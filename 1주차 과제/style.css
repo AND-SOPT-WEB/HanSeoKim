@@ -2,6 +2,8 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: black;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -46,8 +48,47 @@ body {
 }
 
 .background_wrapper {
-  height: 42rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 40rem;
   width: 100%;
   background: url(./img/main_img.png);
   background-size: cover;
+}
+
+.home_bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.explanation {
+  margin-right: 2rem;
+  margin-bottom: 0.5rem;
+  background-color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-weight: 800;
+  color: rgb(64, 162, 208);
+}
+
+.btn_move_to_sopt {
+  margin: 0 2rem 2rem 2rem;
+  background-color: rgb(89, 89, 89);
+  opacity: 0.7;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.btn_move_to_sopt a {
+  text-decoration: none;
+  color: white;
+}
+
+.banner_title {
+  color: white;
+  font-size: 25px;
+  margin: 2rem;
 }
