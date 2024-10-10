@@ -87,8 +87,26 @@ body {
   color: white;
 }
 
+.home_background {
+  background-color: transparent;
+  height: 50rem;
+}
+
 .banner_title {
   color: white;
   font-size: 25px;
   margin: 2rem;
+}
+
+.banner_photos {
+  display: flex;
+
+  justify-content: center;
+  overflow: scroll;
+  gap: 1rem;
+}
+
+.banner_photos > li > img {
+  width: 15em;
+  height: 15rem;
 }
