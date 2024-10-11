@@ -91,7 +91,7 @@ body {
   background-color: black;
 }
 
-.btn_move_to_sopt a {
+a {
   text-decoration: none;
   color: white;
 }
@@ -128,6 +128,27 @@ body {
   justify-content: center;
   overflow: scroll;
   gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.left_btn {
+  position: absolute;
+  left: 0;
+  height: 13rem;
+  background-color: gray;
+  opacity: 0.7;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.right_btn {
+  position: absolute;
+  right: 0;
+  height: 13rem;
+  background-color: gray;
+  opacity: 0.7;
+  padding: 1rem;
+  cursor: pointer;
 }
 
 .banner_photos > li > img,
