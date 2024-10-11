@@ -123,12 +123,24 @@ a {
   animation: bannermove 20s linear infinite;
 }
 
+.banner_photos > li {
+  overflow: hidden;
+}
+
+.banner_photos > li > img:hover {
+  transform: scale(1.2, 1.2);
+  transition-duration: 0.5s;
+}
+.banner_photos > li > img {
+  transition-duration: 0.3s;
+}
+
 .banner_photos2 {
   display: flex;
   justify-content: center;
   overflow: scroll;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
 }
 
 .left_btn {
