@@ -1,6 +1,6 @@
 body {
   height: 100vh;
-  width: 100vw;
+
   background-color: black;
   display: flex;
   flex-direction: column;
@@ -9,8 +9,12 @@ body {
 .header {
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  width: 100%;
   padding: 1rem;
   background-color: transparent;
+  box-sizing: border-box;
+  z-index: 2;
 }
 
 .categories {
@@ -92,6 +96,12 @@ body {
   height: 50rem;
 }
 
+.home_banner {
+  width: 1000px;
+  height: 40rem;
+  box-sizing: border-box;
+}
+
 .banner_title {
   color: white;
   font-size: 25px;
@@ -100,13 +110,33 @@ body {
 
 .banner_photos {
   display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: calc(15em * 12 + 1rem * 11);
+  height: 100%;
+  flex-wrap: nowrap;
+  animation: bannermove 20s linear infinite;
+}
 
+.banner_photos2 {
+  display: flex;
   justify-content: center;
   overflow: scroll;
   gap: 1rem;
 }
 
-.banner_photos > li > img {
+.banner_photos > li > img,
+.banner_photos2 > li > img {
   width: 15em;
   height: 15rem;
+}
+
+@keyframes bannermove {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(-50%, 0);
+  }
 }
