@@ -1,6 +1,11 @@
 const todoList = document.querySelector(".todoList");
 const submitBtn = document.querySelector(".submit_btn");
 const deleteBtn = document.querySelector(".delete_btn");
+const todos = [];
+
+const saveTodos = () => {
+  localStorage.setItem("todos", todos);
+};
 
 const paintTodo = (newTodo) => {
   const li = document.createElement("li");
@@ -12,7 +17,9 @@ const paintTodo = (newTodo) => {
 
 submitBtn.addEventListener("click", () => {
   const newTodo = document.querySelector("#todoInput").value;
+  todos.push(newTodo);
   paintTodo(newTodo);
+  saveTodos();
   newTodo.value = "";
 });
 
