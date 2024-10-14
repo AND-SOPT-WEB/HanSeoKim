@@ -1,6 +1,4 @@
 body {
-  height: 100vh;
-
   background-color: black;
   display: flex;
   flex-direction: column;
@@ -102,9 +100,8 @@ a {
 }
 
 .home_banner {
-  width: 1000px;
-  height: 40rem;
-  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
 }
 
 .banner_title {
@@ -121,10 +118,6 @@ a {
   height: 100%;
   flex-wrap: nowrap;
   animation: bannermove 20s linear infinite;
-}
-
-.banner_photos > li {
-  overflow: hidden;
 }
 
 .banner_photos > li > img:hover {
@@ -175,6 +168,6 @@ a {
   }
 
   100% {
-    transform: translate(-50%, 0);
+    transform: translate(-100%, 0);
   }
 }
