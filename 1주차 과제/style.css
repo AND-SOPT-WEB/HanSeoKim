@@ -1,0 +1,177 @@
+body {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  padding: 1rem;
+  background-color: transparent;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.categories {
+  align-content: center;
+}
+
+.header_left {
+  display: flex;
+}
+
+.header_icons {
+  align-content: center;
+}
+
+.header_logo {
+  width: 5.5rem;
+  height: 2rem;
+  margin-right: 1rem;
+  background: url(./img/sopt_logo.png);
+  background-size: cover;
+  cursor: pointer;
+}
+
+.header_category {
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 1.5rem;
+}
+
+.header_right_logos {
+  color: white;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.background_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 40rem;
+  width: 100%;
+  background: url(./img/main_img.png);
+  background-size: cover;
+}
+
+.home_bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.explanation {
+  margin-right: 2rem;
+  margin-bottom: 0.5rem;
+  background-color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-weight: 800;
+  color: rgb(64, 162, 208);
+}
+
+.btn_move_to_sopt {
+  margin: 0 2rem 2rem 2rem;
+  background-color: rgb(89, 89, 89);
+  opacity: 0.7;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.btn_move_to_sopt:hover {
+  opacity: 1;
+  background-color: black;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.home_background {
+  background-color: transparent;
+  height: 50rem;
+}
+
+.home_banner {
+  width: 100%;
+  overflow: hidden;
+}
+
+.banner_title {
+  color: white;
+  font-size: 25px;
+  margin: 2rem;
+}
+
+.banner_photos {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: calc(15em * 12 + 1rem * 11);
+  height: 100%;
+  flex-wrap: nowrap;
+  animation: bannermove 20s linear infinite;
+}
+
+.banner_photos > li > img:hover {
+  transform: scale(1.2, 1.2);
+  transition-duration: 0.5s;
+}
+.banner_photos > li > img {
+  transition-duration: 0.3s;
+}
+
+.banner_photos2 {
+  display: flex;
+  justify-content: center;
+  overflow: scroll;
+  gap: 1rem;
+  margin-bottom: 5rem;
+}
+
+.left_btn {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  height: 13rem;
+  background-color: gray;
+  opacity: 0.7;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.right_btn {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  height: 13rem;
+  background-color: gray;
+  opacity: 0.7;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.banner_photos > li > img,
+.banner_photos2 > li > img {
+  width: 15rem;
+  height: 15rem;
+}
+
+@keyframes bannermove {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
