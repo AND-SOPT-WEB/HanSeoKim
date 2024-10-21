@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원 관리 페이지</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <i class="fa-solid fa-bars"></i>
+      <h1>회원 관리 페이지</h1>
+      <p>🌊 AND SOPT YB 김한서 🌊</p>
+    </header>
+    <main>
+      <section class="search_container">
+        <div class="filter_options">
+          <div class="name_kor">
+            <p>이름</p>
+            <input type="text" placeholder="이름을 입력해주세요." />
+          </div>
+          <div class="name_eng">
+            <p>영문이름</p>
+            <input type="text" placeholder="영문이름을 입력해주세요." />
+          </div>
+          <div class="github">
+            <p>Github</p>
+            <input type="text" placeholder="Github ID를 입력하세요." />
+          </div>
+          <div class="sex">
+            <p>성별</p>
+            <select>
+              <option value="none" selected>성별 선택</option>
+              <option value="female" id="">여자</option>
+              <option value="male" id="">남자</option>
+            </select>
+          </div>
+          <div class="role">
+            <p>역할</p>
+            <select>
+              <option value="none" selected>OB / YB 선택</option>
+              <option value="OB" id="">OB</option>
+              <option value="YB" id="">YB</option>
+            </select>
+          </div>
+          <div class="week1">
+            <p>1주차 금잔디조</p>
+            <input
+              type="text"
+              placeholder="1주차 금잔디조를 입력하세요 (1~9)"
+            />
+          </div>
+          <div class="week2">
+            <p>2주차 금잔디조</p>
+            <input
+              type="text"
+              placeholder="2주차 금잔디조를 입력하세요 (1~9)"
+            />
+          </div>
+        </div>
+        <div class="buttons">
+          <button type="button" class="reset_btn">초기화</button>
+          <button type="button" class="search_btn">검색</button>
+        </div>
+      </section>
+    </main>
+    <script
+      src="https://kit.fontawesome.com/ef4ad958fe.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
