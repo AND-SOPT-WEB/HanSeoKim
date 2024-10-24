@@ -16,13 +16,26 @@ header {
 }
 
 header h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 500;
+  width: 19rem;
+}
+
+header i {
+  display: inline-block;
+  width: 19rem;
+}
+
+header p {
+  display: inline-block;
+  width: 19rem;
 }
 
 main {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .search_container {
@@ -31,7 +44,7 @@ main {
   flex-direction: column;
   border-radius: 10px;
   margin: 2rem;
-  padding: 3cqi;
+  padding: 3rem;
   background-color: #d2f0fd;
   width: 70%;
 }
@@ -64,7 +77,7 @@ main {
 .role p,
 .week1 p,
 .week2 p {
-  width: 30%;
+  width: 50%;
   text-align: center;
   align-self: center;
   font-size: 1.5rem;
@@ -88,7 +101,7 @@ main {
   grid-column: 1/7;
   grid-row: 2/3;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .github {
@@ -128,7 +141,7 @@ main {
   margin: 1.5rem;
   background-color: rgb(197, 250, 232);
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
   width: 100%;
   cursor: pointer;
 }
