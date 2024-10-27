@@ -4,11 +4,11 @@ if (!localStorage.getItem("membersData")) {
   localStorage.setItem("membersData", JSON.stringify(members));
 }
 
-const membersData = JSON.parse(localStorage.getItem("membersData"));
+let membersData = JSON.parse(localStorage.getItem("membersData"));
 
 const addTableRow = (item) => {
   return `
-    <tr>
+    <tr id = ${item.id} class="members_tr">
         <td><input type="checkbox" /></td>
         <td>${item.name}</td>
         <td>${item.englishName}</td>
@@ -71,7 +71,6 @@ document.querySelector(".search_btn").addEventListener("click", (event) => {
 const selectAllMembers = (event) => {
   const selectAll = event.target;
   const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
-
   if (selectAll.checked) {
     checkBoxes.forEach((checkBox) => {
       checkBox.checked = true;
@@ -84,3 +83,38 @@ const selectAllMembers = (event) => {
 };
 const selectAll = document.querySelector(".checkbox_all");
 selectAll.addEventListener("change", selectAllMembers);
+
+// 삭제 함수
+const deleteMember = (event) => {
+  const checkedMembers = document.querySelectorAll(
+    'input[type="checkbox"]:checked'
+  );
+  const checkedIds = [];
+  checkedMembers.forEach((checked) => {
+    const tableRow = checked.closest(".members_tr");
+    if (tableRow) {
+      checkedIds.push(Number(tableRow.id));
+    }
+  });
+
+  // 전체 삭제시 로컬스토리지 키 삭제
+  if (checkedIds.length === membersData.length) {
+    localStorage.removeItem("membersData");
+    membersData = [];
+    displayTableList(membersData);
+    return;
+  }
+
+  const filter = membersData.filter(
+    (member) => !checkedIds.includes(member.id)
+  );
+  localStorage.setItem("membersData", JSON.stringify(filter));
+
+  membersData = JSON.parse(localStorage.getItem("membersData"));
+
+  console.log("updated", membersData);
+  displayTableList(membersData);
+};
+
+const deleteBtn = document.querySelector(".delete_btn");
+deleteBtn.addEventListener("click", deleteMember);
