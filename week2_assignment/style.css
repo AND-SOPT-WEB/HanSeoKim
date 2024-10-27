@@ -181,3 +181,53 @@ tbody td {
   padding: 2rem;
   background-color: white;
 }
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: 35rem;
+  height: 63rem;
+  border: 0px;
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.modal_top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.modal h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.modal h2 {
+  margin: 1rem 0rem;
+  font-size: 1.5rem;
+}
+
+.modal input,
+select {
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid;
+  color: rgb(158, 158, 158);
+  padding: 0.5rem;
+}
+
+.add_btn {
+  background-color: #fbe7eb;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.close_modal {
+  cursor: pointer;
+  font-size: 2rem;
+}
