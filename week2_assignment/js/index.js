@@ -4,7 +4,7 @@ if (!localStorage.getItem("membersData")) {
   localStorage.setItem("membersData", JSON.stringify(members));
 }
 
-export let membersData = JSON.parse(localStorage.getItem("membersData"));
+let membersData = JSON.parse(localStorage.getItem("membersData"));
 
 const addTableRow = (item) => {
   return `
