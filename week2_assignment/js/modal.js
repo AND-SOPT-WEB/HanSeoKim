@@ -11,10 +11,8 @@ closeModalBtn.addEventListener("click", () => {
   modal.close();
 });
 
-// 백드롭 클릭시 모달창 닫기
 modal.addEventListener("click", (event) => {
-  const target = event.target;
-  const rect = target.getBoundingClientRect();
+  const rect = event.target.getBoundingClientRect();
   if (
     rect.left > event.clientX ||
     rect.right < event.clientX ||
@@ -24,3 +22,29 @@ modal.addEventListener("click", (event) => {
     modal.close();
   }
 });
+
+// 모달 데이터 추가 함수
+const addData = () => {
+  const inputs = document.querySelectorAll(".modal input");
+  const selects = document.querySelectorAll(".modal select");
+  let isFilled = true;
+
+  // 빈칸 있을시 alert
+  inputs.forEach((input) => {
+    if (!input.value) {
+      isFilled = false;
+    }
+  });
+  selects.forEach((option) => {
+    if (!option.value) {
+      isFilled = false;
+    }
+  });
+  if (!isFilled) {
+    alert("빈칸을 모두 채워주세요.");
+  }
+
+  modal.close();
+};
+
+addDataBtn.addEventListener("click", addData);

@@ -183,6 +183,10 @@ tbody td {
 }
 
 .modal {
+  display: none;
+}
+
+.modal[open] {
   display: flex;
   flex-direction: column;
   width: 35rem;
@@ -209,7 +213,7 @@ tbody td {
 }
 
 .modal input,
-select {
+.modal select {
   margin-bottom: 1.5rem;
   border-radius: 10px;
   border: 1px solid;
@@ -230,4 +234,5 @@ select {
 .close_modal {
   cursor: pointer;
   font-size: 2rem;
+  z-index: 1;
 }
