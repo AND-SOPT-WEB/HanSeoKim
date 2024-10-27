@@ -145,4 +145,7 @@ export const reset = () => {
   selects.forEach((select) => (select.value = ""));
 };
 
-resetBtn.addEventListener("click", reset);
+resetBtn.addEventListener("click", () => {
+  reset();
+  displayTableList(membersData);
+});
