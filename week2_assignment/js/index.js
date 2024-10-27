@@ -66,3 +66,21 @@ document.querySelector(".search_btn").addEventListener("click", (event) => {
 
   displayTableList(filteredMembers);
 });
+
+//체크박스 전체 선택
+const selectAllMembers = (event) => {
+  const selectAll = event.target;
+  const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
+
+  if (selectAll.checked) {
+    checkBoxes.forEach((checkBox) => {
+      checkBox.checked = true;
+    });
+  } else {
+    checkBoxes.forEach((checkBox) => {
+      checkBox.checked = false;
+    });
+  }
+};
+const selectAll = document.querySelector(".checkbox_all");
+selectAll.addEventListener("change", selectAllMembers);
