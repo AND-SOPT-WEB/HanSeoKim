@@ -46,6 +46,7 @@ const addData = () => {
   });
   if (!isFilled) {
     alert("빈칸을 모두 채워주세요.");
+    return;
   }
 
   let addMemberInfo = {};

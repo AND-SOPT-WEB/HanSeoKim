@@ -24,6 +24,15 @@ const addTableRow = (item) => {
 export const displayTableList = (items) => {
   const TableRowWrapper = document.querySelector(".results_items");
   TableRowWrapper.innerHTML = items.map((item) => addTableRow(item)).join("");
+
+  //체크 상태 연결
+  const selectAll = document.querySelector(".checkbox_all");
+  selectAll.addEventListener("change", selectAllMembers);
+
+  const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
+  checkBoxes.forEach((checkBox) => {
+    checkBox.addEventListener("change", selectCheckBox);
+  });
 };
 
 //최초 렌더링
@@ -67,22 +76,30 @@ document.querySelector(".search_btn").addEventListener("click", (event) => {
   displayTableList(filteredMembers);
 });
 
-//체크박스 전체 선택
+// 전체 선택 체크박스 클릭
 const selectAllMembers = (event) => {
   const selectAll = event.target;
   const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
-  if (selectAll.checked) {
-    checkBoxes.forEach((checkBox) => {
-      checkBox.checked = true;
-    });
-  } else {
-    checkBoxes.forEach((checkBox) => {
-      checkBox.checked = false;
-    });
-  }
+
+  checkBoxes.forEach((checkBox) => {
+    checkBox.checked = selectAll.checked;
+  });
 };
-const selectAll = document.querySelector(".checkbox_all");
-selectAll.addEventListener("change", selectAllMembers);
+
+// 개별 체크박스 선택
+const selectCheckBox = () => {
+  const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
+  const selectAll = document.querySelector(".checkbox_all");
+
+  let allChecked = true;
+  checkBoxes.forEach((checkBox) => {
+    if (checkBox !== selectAll && !checkBox.checked) {
+      allChecked = false;
+    }
+  });
+
+  selectAll.checked = allChecked;
+};
 
 // 삭제 함수
 const deleteMember = (event) => {
