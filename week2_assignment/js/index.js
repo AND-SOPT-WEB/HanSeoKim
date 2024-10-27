@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //필터 함수
 const filterMembers = (filters) => {
-  return membersData.filter((member) => {
+  return JSON.parse(localStorage.getItem("membersData")).filter((member) => {
     return Object.keys(filters).every((key) => {
       return filters[key]
         ? member[key].toString().includes(filters[key].toString())
@@ -147,5 +147,5 @@ export const reset = () => {
 
 resetBtn.addEventListener("click", () => {
   reset();
-  displayTableList(membersData);
+  displayTableList(JSON.parse(localStorage.getItem("membersData")));
 });

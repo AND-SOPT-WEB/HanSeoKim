@@ -1,9 +1,10 @@
-import { membersData, displayTableList, reset } from "./index.js";
+import { displayTableList, reset } from "./index.js";
 
 const showModalBtn = document.querySelector(".show_modal");
 const modal = document.querySelector(".modal");
 const closeModalBtn = document.querySelector(".close_modal");
 const addDataBtn = document.querySelector(".add_btn");
+const resetBtn = document.querySelector(".reset_btn");
 
 showModalBtn.addEventListener("click", () => {
   modal.showModal();
@@ -60,15 +61,13 @@ const addData = () => {
     secondWeekGroup: Number(document.querySelector(".new_week2").value),
   };
 
-  let newInfo = [];
-  newInfo = [...membersData];
+  let newInfo = JSON.parse(localStorage.getItem("membersData"));
   newInfo.push(addMemberInfo);
   localStorage.setItem("membersData", JSON.stringify(newInfo));
   newInfo = JSON.parse(localStorage.getItem("membersData"));
 
   modal.close();
   displayTableList(newInfo);
-  reset();
 };
 
 addDataBtn.addEventListener("click", addData);
