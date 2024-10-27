@@ -56,8 +56,8 @@ const addData = () => {
     github: document.querySelector(".new_github").value,
     gender: document.querySelector(".new_gender").value,
     role: document.querySelector(".new_role").value,
-    firstWeekGroup: document.querySelector(".new_week1").value,
-    secondWeekGroup: document.querySelector(".new_week2").value,
+    firstWeekGroup: Number(document.querySelector(".new_week1").value),
+    secondWeekGroup: Number(document.querySelector(".new_week2").value),
   };
 
   let newInfo = [];
