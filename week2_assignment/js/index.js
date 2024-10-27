@@ -4,11 +4,11 @@ if (!localStorage.getItem("membersData")) {
   localStorage.setItem("membersData", JSON.stringify(members));
 }
 
-let membersData = JSON.parse(localStorage.getItem("membersData"));
+export let membersData = JSON.parse(localStorage.getItem("membersData"));
 
 const addTableRow = (item) => {
   return `
-    <tr id = ${item.id} class="members_tr">
+    <tr id = ${item.name} class="members_tr">
         <td><input type="checkbox" /></td>
         <td>${item.name}</td>
         <td>${item.englishName}</td>
@@ -21,7 +21,7 @@ const addTableRow = (item) => {
     `;
 };
 
-const displayTableList = (items) => {
+export const displayTableList = (items) => {
   const TableRowWrapper = document.querySelector(".results_items");
   TableRowWrapper.innerHTML = items.map((item) => addTableRow(item)).join("");
 };
@@ -93,7 +93,7 @@ const deleteMember = (event) => {
   checkedMembers.forEach((checked) => {
     const tableRow = checked.closest(".members_tr");
     if (tableRow) {
-      checkedIds.push(Number(tableRow.id));
+      checkedIds.push(tableRow.id);
     }
   });
 
@@ -106,13 +106,11 @@ const deleteMember = (event) => {
   }
 
   const filter = membersData.filter(
-    (member) => !checkedIds.includes(member.id)
+    (member) => !checkedIds.includes(member.name)
   );
   localStorage.setItem("membersData", JSON.stringify(filter));
 
   membersData = JSON.parse(localStorage.getItem("membersData"));
-
-  console.log("updated", membersData);
   displayTableList(membersData);
 };
 

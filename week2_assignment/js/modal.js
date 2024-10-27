@@ -1,3 +1,5 @@
+import { membersData, displayTableList } from "./index.js";
+
 const showModalBtn = document.querySelector(".show_modal");
 const modal = document.querySelector(".modal");
 const closeModalBtn = document.querySelector(".close_modal");
@@ -44,7 +46,25 @@ const addData = () => {
     alert("빈칸을 모두 채워주세요.");
   }
 
+  let addMemberInfo = {};
+  addMemberInfo = {
+    name: document.querySelector(".new_name").value,
+    englishName: document.querySelector(".new_engName").value,
+    github: document.querySelector(".new_github").value,
+    gender: document.querySelector(".new_gender").value,
+    role: document.querySelector(".new_role").value,
+    firstWeekGroup: document.querySelector(".new_week1").value,
+    secondWeekGroup: document.querySelector(".new_week2").value,
+  };
+
+  let newInfo = [];
+  newInfo = [...membersData];
+  newInfo.push(addMemberInfo);
+  localStorage.setItem("membersData", JSON.stringify(newInfo));
+  newInfo = JSON.parse(localStorage.getItem("membersData"));
+
   modal.close();
+  displayTableList(newInfo);
 };
 
 addDataBtn.addEventListener("click", addData);
