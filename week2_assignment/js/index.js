@@ -12,7 +12,7 @@ const addTableRow = (item) => {
         <td><input type="checkbox" /></td>
         <td>${item.name}</td>
         <td>${item.englishName}</td>
-        <td>${item.github}</td>
+        <td><a href="https://github.com/${item.github}">${item.github}</a></td>
         <td>${item.gender}</td>
         <td>${item.role}</td>
         <td>${item.firstWeekGroup}</td>
