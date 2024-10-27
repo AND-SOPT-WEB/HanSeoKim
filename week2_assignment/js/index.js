@@ -116,3 +116,14 @@ const deleteMember = (event) => {
 
 const deleteBtn = document.querySelector(".delete_btn");
 deleteBtn.addEventListener("click", deleteMember);
+
+//필드값 초기화
+const resetBtn = document.querySelector(".reset_btn");
+export const reset = () => {
+  const inputs = document.querySelectorAll('input[type="text');
+  const selects = document.querySelectorAll("select");
+  inputs.forEach((input) => (input.value = ""));
+  selects.forEach((select) => (select.value = ""));
+};
+
+resetBtn.addEventListener("click", reset);

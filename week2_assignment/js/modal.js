@@ -1,4 +1,4 @@
-import { membersData, displayTableList } from "./index.js";
+import { membersData, displayTableList, reset } from "./index.js";
 
 const showModalBtn = document.querySelector(".show_modal");
 const modal = document.querySelector(".modal");
@@ -11,6 +11,7 @@ showModalBtn.addEventListener("click", () => {
 
 closeModalBtn.addEventListener("click", () => {
   modal.close();
+  reset();
 });
 
 modal.addEventListener("click", (event) => {
@@ -22,6 +23,7 @@ modal.addEventListener("click", (event) => {
     rect.bottom < event.clientY
   ) {
     modal.close();
+    reset();
   }
 });
 
@@ -65,6 +67,7 @@ const addData = () => {
 
   modal.close();
   displayTableList(newInfo);
+  reset();
 };
 
 addDataBtn.addEventListener("click", addData);
