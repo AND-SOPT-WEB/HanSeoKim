@@ -116,14 +116,6 @@ const deleteMember = (event) => {
     }
   });
 
-  // 전체 삭제시 로컬스토리지 키 삭제
-  if (checkedIds.length === membersData.length) {
-    localStorage.removeItem("membersData");
-    membersData = [];
-    displayTableList(membersData);
-    return;
-  }
-
   const filter = membersData.filter(
     (member) => !checkedIds.includes(member.name)
   );
