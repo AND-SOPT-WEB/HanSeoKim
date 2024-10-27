@@ -80,8 +80,13 @@
       </section>
       <div class="button_wrapper">
         <button type="button" class="delete_btn">선택삭제</button>
-        <button type="button">추가</button>
+        <button type="button" class="show_modal">추가</button>
       </div>
+      <dialog class="modal">
+        <h1>새 멤버 추가</h1>
+        <button class="close_modal">x</button>
+      </dialog>
+
       <section class="filter_results">
         <table>
           <thead>
@@ -105,5 +110,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="js/index.js" type="module"></script>
+    <script src="js/modal.js" type="module"></script>
   </body>
 </html>
