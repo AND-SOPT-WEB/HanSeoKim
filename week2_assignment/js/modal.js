@@ -4,7 +4,6 @@ const showModalBtn = document.querySelector(".show_modal");
 const modal = document.querySelector(".modal");
 const closeModalBtn = document.querySelector(".close_modal");
 const addDataBtn = document.querySelector(".add_btn");
-const resetBtn = document.querySelector(".reset_btn");
 
 showModalBtn.addEventListener("click", () => {
   modal.showModal();
