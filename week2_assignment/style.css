@@ -57,7 +57,7 @@ main {
   grid-gap: 0.5rem;
 }
 
-.filter_options div {
+.filter_options label {
   background-color: #fbe7eb;
 }
 
@@ -71,7 +71,7 @@ main {
 .name_kor p,
 .name_eng p,
 .github p,
-.sex p,
+.gender p,
 .role p,
 .week1 p,
 .week2 p {
@@ -85,7 +85,7 @@ main {
 .name_kor input,
 .name_eng input,
 .github input,
-.sex select,
+.gender select,
 .role select,
 .week1 input,
 .week2 input {
@@ -108,7 +108,7 @@ main {
   display: flex;
 }
 
-.sex {
+.gender {
   grid-column: 3/5;
   display: flex;
 }
@@ -131,12 +131,13 @@ main {
 .buttons {
   display: flex;
   margin-top: 2rem;
+  gap: 2rem;
 }
 
 .reset_btn,
 .search_btn {
   padding: 2rem;
-  margin: 1.5rem;
+
   background-color: #c5fae8;
   text-align: center;
   font-size: 2rem;

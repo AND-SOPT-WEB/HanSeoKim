@@ -16,48 +16,62 @@
     <main>
       <section class="search_container">
         <div class="filter_options">
-          <div class="name_kor">
+          <label class="name_kor">
             <p>이름</p>
-            <input type="text" placeholder="이름을 입력해주세요." />
-          </div>
-          <div class="name_eng">
+            <input
+              type="text"
+              placeholder="이름을 입력해주세요."
+              class="input_name"
+            />
+          </label>
+          <label class="name_eng">
             <p>영문이름</p>
-            <input type="text" placeholder="영문이름을 입력해주세요." />
-          </div>
-          <div class="github">
+            <input
+              type="text"
+              placeholder="영문이름을 입력해주세요."
+              class="input_engName"
+            />
+          </label>
+          <label class="github">
             <p>Github</p>
-            <input type="text" placeholder="Github ID를 입력하세요." />
-          </div>
-          <div class="sex">
+            <input
+              type="text"
+              placeholder="Github ID를 입력하세요."
+              class="input_github"
+            />
+          </label>
+          <label class="gender">
             <p>성별</p>
-            <select>
-              <option value="none" selected>성별 선택</option>
+            <select class="input_gender">
+              <option value="" selected>성별 선택</option>
               <option value="female" id="">여자</option>
               <option value="male" id="">남자</option>
             </select>
-          </div>
-          <div class="role">
+          </label>
+          <label class="role">
             <p>역할</p>
-            <select>
-              <option value="none" selected>OB / YB 선택</option>
+            <select class="input_role">
+              <option value="" selected>OB / YB 선택</option>
               <option value="OB" id="">OB</option>
               <option value="YB" id="">YB</option>
             </select>
-          </div>
-          <div class="week1">
+          </label>
+          <label class="week1">
             <p>1주차 금잔디조</p>
             <input
               type="text"
               placeholder="1주차 금잔디조를 입력하세요 (1~9)"
+              class="input_week1"
             />
-          </div>
-          <div class="week2">
+          </label>
+          <label class="week2">
             <p>2주차 금잔디조</p>
             <input
               type="text"
               placeholder="2주차 금잔디조를 입력하세요 (1~9)"
+              class="input_week2"
             />
-          </div>
+          </label>
         </div>
         <div class="buttons">
           <button type="button" class="reset_btn">초기화</button>
@@ -82,18 +96,7 @@
               <th>2주차 금잔디</th>
             </tr>
           </thead>
-          <tbody class="results_items">
-            <tr>
-              <td><input type="checkbox" /></td>
-              <td>김한서</td>
-              <td>Hanseo Kim</td>
-              <td>seueooo</td>
-              <td>성별</td>
-              <td>역할</td>
-              <td>1주차 금잔디</td>
-              <td>2주차 금잔디</td>
-            </tr>
-          </tbody>
+          <tbody class="results_items"></tbody>
         </table>
       </section>
     </main>
