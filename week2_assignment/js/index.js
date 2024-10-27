@@ -58,8 +58,8 @@ document.querySelector(".search_btn").addEventListener("click", (event) => {
     github: document.querySelector(".input_github").value,
     gender: document.querySelector(".input_gender").value,
     role: document.querySelector(".input_role").value,
-    firstWeekGroup: document.querySelector(".input_week1").value,
-    secondWeekGroup: document.querySelector(".input_week2").value,
+    firstWeekGroup: Number(document.querySelector(".input_week1").value),
+    secondWeekGroup: Number(document.querySelector(".input_week2").value),
   };
 
   const filteredMembers = filterMembers(filters);
