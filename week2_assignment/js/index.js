@@ -44,9 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const filterMembers = (filters) => {
   return JSON.parse(localStorage.getItem("membersData")).filter((member) => {
     return Object.keys(filters).every((key) => {
-      return filters[key]
-        ? member[key].toString().includes(filters[key].toString())
-        : true;
+      return filters[key] ? filters[key] === member[key] : true;
     });
   });
 };
