@@ -7,28 +7,34 @@ body {
 }
 
 header {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+
   align-items: center;
-  justify-content: space-between;
   padding: 3rem;
   background-color: #fbe7eb;
   font-size: 1.5rem;
 }
 
 header h1 {
+  grid-column: 2/3;
+  grid-row: inherit;
   font-size: 2.5rem;
   font-weight: 500;
-  width: 19rem;
+  text-align: center;
 }
 
 header i {
-  display: inline-block;
-  width: 19rem;
+  grid-column: 1/2;
+  grid-row: inherit;
 }
 
 header p {
-  display: inline-block;
-  width: 19rem;
+  grid-column: 3/4;
+  grid-row: inherit;
+  text-align: flex-end;
+  justify-self: end;
 }
 
 main {
