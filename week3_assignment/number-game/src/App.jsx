@@ -4,9 +4,10 @@ import { Global } from "@emotion/react";
 
 function App() {
   return (
-    <Global css={GlobalStyle}>
+    <>
+      <Global styles={GlobalStyle} />
       <MainLayout></MainLayout>
-    </Global>
+    </>
   );
 }
 
