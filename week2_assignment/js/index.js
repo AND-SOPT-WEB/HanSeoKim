@@ -44,7 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
 const filterMembers = (filters) => {
   return JSON.parse(localStorage.getItem("membersData")).filter((member) => {
     return Object.keys(filters).every((key) => {
-      return filters[key] ? filters[key] === member[key] : true;
+      if (key === "gender") {
+        return filters[key] ? filters[key] === member[key] : true;
+      } else {
+        return filters[key]
+          ? member[key].toString().includes(filters[key].toString())
+          : true;
+      }
     });
   });
 };
@@ -73,6 +79,7 @@ document.querySelector(".search_btn").addEventListener("click", (event) => {
 
   const filteredMembers = filterMembers(filters);
 
+  console.log(filters.gender);
   displayTableList(filteredMembers);
 });
 
