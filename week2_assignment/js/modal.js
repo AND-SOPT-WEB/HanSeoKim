@@ -51,6 +51,7 @@ const addData = () => {
 
   let addMemberInfo = {};
   addMemberInfo = {
+    id: Date.now(),
     name: document.querySelector(".new_name").value,
     englishName: document.querySelector(".new_engName").value,
     github: document.querySelector(".new_github").value,

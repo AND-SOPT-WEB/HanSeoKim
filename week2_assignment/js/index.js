@@ -8,7 +8,7 @@ let membersData = JSON.parse(localStorage.getItem("membersData"));
 
 const addTableRow = (item) => {
   return `
-    <tr id = ${item.name} class="members_tr">
+    <tr id = ${item.id} class="members_tr">
         <td><input type="checkbox" /></td>
         <td>${item.name}</td>
         <td>${item.englishName}</td>
