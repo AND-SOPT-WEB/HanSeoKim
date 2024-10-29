@@ -8,7 +8,7 @@ export const TabBtnStyle = css`
   font-family: "GalmuriMono7";
   cursor: pointer;
   background-color: white;
-
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   &:hover {
     background-color: #111b46;
     color: white;
