@@ -54,14 +54,6 @@ const filterMembers = (filters) => {
 
 let filters = {};
 
-document.querySelector(".input_gender").addEventListener("change", (event) => {
-  filters.gender = event.target.value;
-});
-
-document.querySelector(".input_role").addEventListener("change", (event) => {
-  filters.role = event.target.value;
-});
-
 //검색 버튼 클릭시 필터 목록 렌더링
 document.querySelector(".search_btn").addEventListener("click", () => {
   filters = {
@@ -104,16 +96,10 @@ const deleteMember = (event) => {
   const checkedMembers = document.querySelectorAll(
     'input[type="checkbox"]:checked'
   );
-  const checkedIds = [];
-  checkedMembers.forEach((checked) => {
-    const tableRow = checked.closest(".members_tr");
-    if (tableRow) {
-      console.log(tableRow.id);
-      checkedIds.push(Number(tableRow.id));
-    }
-  });
+  const checkedIds = Array.from(
+    document.querySelectorAll('input[type="checkbox"]:checked')
+  ).map((checked) => Number(checked.closest(".members_tr").id));
 
-  console.log(checkedIds);
   const filter = membersData.filter(
     (member) => !checkedIds.includes(member.id)
   );
