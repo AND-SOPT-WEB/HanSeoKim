@@ -6,17 +6,17 @@ if (!localStorage.getItem("membersData")) {
 
 let membersData = JSON.parse(localStorage.getItem("membersData"));
 
-const addTableRow = (item) => {
+const addTableRow = (member) => {
   return `
-    <tr id = ${item.id} class="members_tr">
+    <tr id = ${member.id} class="members_tr">
         <td><input type="checkbox" /></td>
-        <td>${item.name}</td>
-        <td>${item.englishName}</td>
-        <td><a href="https://github.com/${item.github}">${item.github}</a></td>
-        <td>${item.gender}</td>
-        <td>${item.role}</td>
-        <td>${item.firstWeekGroup}</td>
-        <td>${item.secondWeekGroup}</td>
+        <td>${member.name}</td>
+        <td>${member.englishName}</td>
+        <td><a href="https://github.com/${member.github}">${member.github}</a></td>
+        <td>${member.gender}</td>
+        <td>${member.role}</td>
+        <td>${member.firstWeekGroup}</td>
+        <td>${member.secondWeekGroup}</td>
     </tr>
     `;
 };
@@ -44,13 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
 const filterMembers = (filters) => {
   return JSON.parse(localStorage.getItem("membersData")).filter((member) => {
     return Object.keys(filters).every((key) => {
-      if (key === "gender") {
-        return filters[key] ? filters[key] === member[key] : true;
-      } else {
-        return filters[key]
-          ? member[key].toString().includes(filters[key].toString())
-          : true;
-      }
+      if (!filters[key]) return true; // 필터 값이 없는 경우라면 먼저 true return (무조건 멤버 나와야 하니!)
+      return key === "gender"
+        ? member[key] === filters[key]
+        : member[key].toString().includes(filters[key].toString());
     });
   });
 };
@@ -66,7 +63,7 @@ document.querySelector(".input_role").addEventListener("change", (event) => {
 });
 
 //검색 버튼 클릭시 필터 목록 렌더링
-document.querySelector(".search_btn").addEventListener("click", (event) => {
+document.querySelector(".search_btn").addEventListener("click", () => {
   filters = {
     name: document.querySelector(".input_name").value,
     englishName: document.querySelector(".input_engName").value,
@@ -79,7 +76,6 @@ document.querySelector(".search_btn").addEventListener("click", (event) => {
 
   const filteredMembers = filterMembers(filters);
 
-  console.log(filters.gender);
   displayTableList(filteredMembers);
 });
 
@@ -98,14 +94,9 @@ const selectCheckBox = () => {
   const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
   const selectAll = document.querySelector(".checkbox_all");
 
-  let allChecked = true;
-  checkBoxes.forEach((checkBox) => {
-    if (checkBox !== selectAll && !checkBox.checked) {
-      allChecked = false;
-    }
-  });
-
-  selectAll.checked = allChecked;
+  selectAll.checked = [...checkBoxes].every(
+    (checkBox) => checkBox === selectAll || checkBox.checked
+  );
 };
 
 // 삭제 함수
@@ -117,13 +108,16 @@ const deleteMember = (event) => {
   checkedMembers.forEach((checked) => {
     const tableRow = checked.closest(".members_tr");
     if (tableRow) {
-      checkedIds.push(tableRow.id);
+      console.log(tableRow.id);
+      checkedIds.push(Number(tableRow.id));
     }
   });
 
+  console.log(checkedIds);
   const filter = membersData.filter(
-    (member) => !checkedIds.includes(member.name)
+    (member) => !checkedIds.includes(member.id)
   );
+
   localStorage.setItem("membersData", JSON.stringify(filter));
 
   membersData = JSON.parse(localStorage.getItem("membersData"));
@@ -131,18 +125,22 @@ const deleteMember = (event) => {
 };
 
 const deleteBtn = document.querySelector(".delete_btn");
-deleteBtn.addEventListener("click", deleteMember);
+deleteBtn.addEventListener("click", () => {
+  deleteMember();
+});
 
 //필드값 초기화
 const resetBtn = document.querySelector(".reset_btn");
 export const reset = () => {
-  const inputs = document.querySelectorAll('input[type="text');
+  const inputs = document.querySelectorAll('input[type="text"]');
+  s;
   const selects = document.querySelectorAll("select");
   inputs.forEach((input) => (input.value = ""));
   selects.forEach((select) => (select.value = ""));
 };
 
 resetBtn.addEventListener("click", () => {
-  reset();
   displayTableList(JSON.parse(localStorage.getItem("membersData")));
+
+  reset();
 });
