@@ -7,7 +7,7 @@ import NumCard from "./NumCard";
 import { useTimer } from "../../hooks/useTimer";
 import { useState } from "react";
 
-const Game = ({ level }) => {
+const Game1 = ({ level }) => {
   const [cardState, setCardState] = useState({
     cardArray: [],
     visibleCards: [],
@@ -86,5 +86,3 @@ const Game = ({ level }) => {
     </>
   );
 };
-
-export default Game;
