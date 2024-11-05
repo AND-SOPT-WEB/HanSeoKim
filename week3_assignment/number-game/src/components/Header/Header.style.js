@@ -9,12 +9,21 @@ export const headerStyle = css`
   background-color: black;
   color: white;
   font-size: 0.8rem;
+
+  & div {
+    display: flex;
+  }
 `;
 
 export const btnWrapper = css`
-  display: flex;
   justify-content: space-between;
   align-items: center;
   width: 80%;
   margin-left: 2rem;
+`;
+
+export const timeStyle = css`
+  margin-left: 2rem;
+  align-self: center;
+  font-size: 1.5rem;
 `;

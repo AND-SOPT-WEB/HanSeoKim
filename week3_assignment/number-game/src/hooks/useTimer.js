@@ -12,10 +12,15 @@ export const useTimer = () => {
       setTime((addedTime / 1000).toFixed(2));
     }, 10);
   };
+  const resetTimer = () => {
+    clearInterval(timerInterval.current);
+    setTime(0);
+    startTime.current = 0;
+  };
 
   useEffect(() => {
     return () => clearInterval(timerInterval.current);
   }, []);
 
-  return { time, startTimer };
+  return { time, startTimer, resetTimer };
 };
