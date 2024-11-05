@@ -5,9 +5,10 @@ import { boardTopStyle } from "./RankingBoard.style";
 const RankingBoard = () => {
   const rankingDatas = JSON.parse(localStorage.getItem("gameDatas")) || [];
   const sortedDatas = rankingDatas.sort((a, b) => {
-    const A = a.playTime;
-    const B = b.playTime;
-    return A - B;
+    if (b.level !== a.level) {
+      return b.level - a.level;
+    }
+    return Number(a.playTime) - Number(b.playTime);
   });
 
   const resetRanking = () => {
