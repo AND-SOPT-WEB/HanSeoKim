@@ -2,9 +2,9 @@
 
 import { css } from "@emotion/react";
 
-const NumCard = ({ number, onClick }) => {
+const NumCard = ({ number, onClick, isReplaced }) => {
   return (
-    <div css={cardStyle} onClick={onClick}>
+    <div css={cardStyle(isReplaced)} onClick={onClick}>
       {number}
     </div>
   );
@@ -12,12 +12,12 @@ const NumCard = ({ number, onClick }) => {
 
 export default NumCard;
 
-const cardStyle = css`
+const cardStyle = (isReplaced) => css`
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
   width: 4rem;
   height: 4rem;
-  background-color: black;
+  background-color: ${isReplaced ? "#00025C" : "black"};
 `;
