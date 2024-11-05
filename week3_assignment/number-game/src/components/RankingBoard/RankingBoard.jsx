@@ -5,11 +5,16 @@ import { boardTopStyle } from "./RankingBoard.style";
 const RankingBoard = () => {
   const rankingDatas = JSON.parse(localStorage.getItem("gameDatas"));
   console.log(rankingDatas);
+
+  const resetRanking = () => {
+    localStorage.removeItem("gameDatas");
+  };
+
   return (
     <div css={RankingBoardStyle}>
       <div css={boardTopStyle}>
         <h1>랭킹</h1>
-        <button>초기화</button>
+        <button onClick={() => resetRanking()}>초기화</button>
       </div>
       <table>
         <thead>
@@ -20,7 +25,7 @@ const RankingBoard = () => {
           </tr>
         </thead>
         <tbody>
-          {rankingDatas.map((rank) => {
+          {rankingDatas?.map((rank) => {
             return (
               <tr key={rank.currentTime}>
                 <td>{rank.currentTime}</td>
