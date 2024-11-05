@@ -2,8 +2,12 @@
 
 import { css } from "@emotion/react";
 
-const NumCard = ({ number }) => {
-  return <div css={cardStyle}>{number}</div>;
+const NumCard = ({ number, onClick }) => {
+  return (
+    <div css={cardStyle} onClick={onClick}>
+      {number}
+    </div>
+  );
 };
 
 export default NumCard;

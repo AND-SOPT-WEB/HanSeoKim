@@ -13,12 +13,24 @@ const Game = ({ level }) => {
     visibleCards: [],
     clickedCards: [],
   });
+  let levelGrid;
+  if (level === "1") {
+    levelGrid = 3;
+  } else if (level === "2") {
+    levelGrid = 4;
+  } else {
+    levelGrid = 5;
+  }
 
-  const handleInitialCardArray = (cardArray) => {
-    setCardState(cardArray);
+  const handleCardState = (arr) => {
+    setCardState({
+      cardArray: arr,
+      visibleCards: shuffleCard(arr.slice(0, Math.floor(arr.length / 2))),
+      clickedCards: [],
+    });
   };
 
-  const renderGameBoard = () => {
+  const RenderGameBoard = () => {
     let cardArray = [];
     switch (level) {
       case "1":
@@ -31,30 +43,48 @@ const Game = ({ level }) => {
         break;
       case "3":
         cardArray = Array.from({ length: 50 }, (_, index) => index + 1);
-
         break;
     }
 
-    const shuffledCards = shuffleCard(cardArray);
-    let levelGrid;
+    handleCardState(cardArray);
+  };
 
-    if (level === "1") {
-      levelGrid = 3;
-    } else if (level === "2") {
-      levelGrid = 4;
-    } else {
-      levelGrid = 5;
+  if (cardState.cardArray.length === 0) {
+    RenderGameBoard();
+  }
+
+  const handleFirstCardClick = (card) => {
+    if (!cardState.clickedCards.includes(card)) {
+      const firstClickedCards = [...cardState.clickedCards, card];
+      const remainCards = cardState.visibleCards.filter(
+        (c) => !firstClickedCards.includes(c)
+      );
+      console.log("firstClick", firstClickedCards);
+      console.log("remainCards", remainCards);
+
+      const firstVisibleCards = [...remainCards];
+
+      setCardState((prev) => ({
+        ...prev,
+        clickedCards: firstClickedCards,
+        visibleCards: firstVisibleCards,
+      }));
     }
+  };
 
-    return (
+  return (
+    <>
       <div css={gameStyle(levelGrid)}>
-        {shuffledCards.map((card) => (
-          <NumCard key={card} number={card} />
+        {cardState.visibleCards.map((card) => (
+          <NumCard
+            key={card}
+            number={card}
+            onClick={() => handleFirstCardClick(card)}
+          />
         ))}
       </div>
-    );
-  };
-  return <>{renderGameBoard()}</>;
+    </>
+  );
 };
 
 export default Game;
