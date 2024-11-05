@@ -8,7 +8,7 @@ import ModalContent from "../Modal/ModalContent";
 import NumCard from "./NumCard";
 import { useState, useEffect } from "react";
 
-const Game = ({ level, startTimer, resetTimer, stopTimer }) => {
+const Game = ({ level, startTimer, resetTimer, time, stopTimer }) => {
   const [showModal, setShowModal] = useState(false);
   const [cardState, setCardState] = useState({
     cardArray: [],
@@ -27,33 +27,33 @@ const Game = ({ level, startTimer, resetTimer, stopTimer }) => {
     levelGrid = 5;
   }
 
+  const initCardArray = () => {
+    let cardArray = [];
+    switch (level) {
+      case "1":
+        cardArray = Array.from({ length: 18 }, (_, index) => index + 1);
+        break;
+      case "2":
+        cardArray = Array.from({ length: 32 }, (_, index) => index + 1);
+        break;
+      case "3":
+        cardArray = Array.from({ length: 50 }, (_, index) => index + 1);
+        break;
+    }
+
+    setCardState({
+      cardArray: cardArray,
+      visibleCards: shuffleCard(
+        cardArray.slice(0, Math.floor(cardArray.length / 2))
+      ),
+      clickedCards: [],
+      nextNumber: 1,
+      replaceCard: shuffleCard(cardArray.slice(cardArray.length / 2)),
+    });
+  };
   useEffect(() => {
-    const initCardArray = () => {
-      let cardArray = [];
-      switch (level) {
-        case "1":
-          cardArray = Array.from({ length: 18 }, (_, index) => index + 1);
-          break;
-        case "2":
-          cardArray = Array.from({ length: 32 }, (_, index) => index + 1);
-          break;
-        case "3":
-          cardArray = Array.from({ length: 50 }, (_, index) => index + 1);
-          break;
-      }
-
-      setCardState({
-        cardArray: cardArray,
-        visibleCards: shuffleCard(
-          cardArray.slice(0, Math.floor(cardArray.length / 2))
-        ),
-        clickedCards: [],
-        nextNumber: 1,
-        replaceCard: shuffleCard(cardArray.slice(cardArray.length / 2)),
-      });
-    };
-
     initCardArray();
+
     setShowModal(false);
   }, [level]);
 
@@ -78,6 +78,21 @@ const Game = ({ level, startTimer, resetTimer, stopTimer }) => {
       }));
     }
   };
+
+  const handleReset = () => {
+    resetTimer();
+
+    initCardArray();
+    setShowModal(false);
+  };
+
+  let gameDatas = [];
+  let userData = {
+    currentTime: "",
+    level: level,
+    playTime: "",
+  };
+
   useEffect(() => {
     if (
       cardState.clickedCards.length === cardState.cardArray.length &&
@@ -85,6 +100,10 @@ const Game = ({ level, startTimer, resetTimer, stopTimer }) => {
     ) {
       stopTimer();
       setShowModal(true);
+      userData.currentTime = Date.now();
+      userData.playTime = time;
+      gameDatas = [...gameDatas, userData];
+      localStorage.setItem("gameDatas", JSON.stringify(gameDatas));
     }
   }, [cardState.clickedCards, cardState.cardArray.length, stopTimer]);
 
@@ -111,7 +130,10 @@ const Game = ({ level, startTimer, resetTimer, stopTimer }) => {
       </div>
       {showModal &&
         createPortal(
-          <ModalContent onClose={() => setShowModal(false)} />,
+          <ModalContent
+            onClose={() => setShowModal(false)}
+            handleReset={handleReset}
+          />,
           document.body
         )}
     </>

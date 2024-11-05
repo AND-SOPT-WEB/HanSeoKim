@@ -38,6 +38,7 @@ const MainLayout = () => {
             startTimer={startTimer}
             resetTimer={resetTimer}
             stopTimer={stopTimer}
+            time={time}
           ></Game>
         )}
       </div>

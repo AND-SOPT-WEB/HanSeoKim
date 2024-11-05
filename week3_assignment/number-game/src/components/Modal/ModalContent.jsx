@@ -1,12 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-const ModalContent = ({ onClose }) => {
+const ModalContent = ({ handleReset }) => {
+  let userData = JSON.parse(localStorage.getItem("gameDatas"));
+  console.log(userData);
   return (
     <div className="modal" css={modalStyle}>
       <p>게임 종료!</p>
-      <p>기록: </p>
-      <button onClick={onClose}>확인</button>
+      <p>기록: {userData[userData.length - 1].playTime} </p>
+      <button
+        onClick={() => {
+          handleReset();
+        }}
+      >
+        확인
+      </button>
     </div>
   );
 };
