@@ -3,8 +3,12 @@ import { RankingBoardStyle } from "./RankingBoard.style";
 import { boardTopStyle } from "./RankingBoard.style";
 
 const RankingBoard = () => {
-  const rankingDatas = JSON.parse(localStorage.getItem("gameDatas"));
-  console.log(rankingDatas);
+  const rankingDatas = JSON.parse(localStorage.getItem("gameDatas")) || [];
+  const sortedDatas = rankingDatas.sort((a, b) => {
+    const A = a.playTime;
+    const B = b.playTime;
+    return A - B;
+  });
 
   const resetRanking = () => {
     localStorage.removeItem("gameDatas");
@@ -25,7 +29,7 @@ const RankingBoard = () => {
           </tr>
         </thead>
         <tbody>
-          {rankingDatas?.map((rank) => {
+          {sortedDatas?.map((rank) => {
             return (
               <tr key={rank.currentTime}>
                 <td>{rank.currentTime}</td>
