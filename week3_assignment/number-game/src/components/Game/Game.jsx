@@ -2,11 +2,14 @@
 
 import { gameStyle } from "./Game.style";
 import { shuffleCard } from "../../utils/shuffleCard";
+import { createPortal } from "react-dom";
+import ModalContent from "../Modal/ModalContent";
 
 import NumCard from "./NumCard";
 import { useState, useEffect } from "react";
 
 const Game = ({ level, startTimer, resetTimer, stopTimer }) => {
+  const [showModal, setShowModal] = useState(false);
   const [cardState, setCardState] = useState({
     cardArray: [],
     visibleCards: [],
@@ -51,7 +54,7 @@ const Game = ({ level, startTimer, resetTimer, stopTimer }) => {
     };
 
     initCardArray();
-    resetTimer();
+    setShowModal(false);
   }, [level]);
 
   const handleClickCard = (card) => {
@@ -75,9 +78,15 @@ const Game = ({ level, startTimer, resetTimer, stopTimer }) => {
       }));
     }
   };
-  if (cardState.clickedCards.length === cardState.cardArray.length) {
-    stopTimer();
-  }
+  useEffect(() => {
+    if (
+      cardState.clickedCards.length === cardState.cardArray.length &&
+      cardState.cardArray.length !== 0
+    ) {
+      stopTimer();
+      setShowModal(true);
+    }
+  }, [cardState.clickedCards, cardState.cardArray.length, stopTimer]);
 
   return (
     <>
@@ -100,9 +109,11 @@ const Game = ({ level, startTimer, resetTimer, stopTimer }) => {
           )
         )}
       </div>
-      {cardState.clickedCards.length === cardState.cardArray.length && (
-        <div>게임 종료!</div>
-      )}
+      {showModal &&
+        createPortal(
+          <ModalContent onClose={() => setShowModal(false)} />,
+          document.body
+        )}
     </>
   );
 };
