@@ -2,8 +2,8 @@
 
 import { css } from "@emotion/react";
 
-const NumCard = () => {
-  return <div css={cardStyle}>d</div>;
+const NumCard = ({ number }) => {
+  return <div css={cardStyle}>{number}</div>;
 };
 
 export default NumCard;

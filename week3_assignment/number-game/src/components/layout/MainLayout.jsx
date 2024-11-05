@@ -27,7 +27,7 @@ const MainLayout = () => {
         handleLevel={handleLevel}
       ></Header>
       <div css={layoutStyle}>
-        {tab === "랭킹" ? <RankingBoard /> : <Game></Game>}
+        {tab === "랭킹" ? <RankingBoard /> : <Game level={level}></Game>}
       </div>
     </div>
   );
