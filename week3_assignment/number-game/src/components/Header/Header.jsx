@@ -4,7 +4,7 @@ import TabBtn from "../TabBtn/TabBtn";
 import { btnWrapper } from "./Header.style";
 import DropdownLevel from "../DropdownLevel/DropdownLevel";
 
-const Header = ({ handleSwitchTab, tab }) => {
+const Header = ({ handleSwitchTab, tab, handleLevel }) => {
   return (
     <header css={headerStyle}>
       <h1>1 to 50</h1>
@@ -23,7 +23,7 @@ const Header = ({ handleSwitchTab, tab }) => {
         </div>
         {tab === "게임" && (
           <div>
-            <DropdownLevel></DropdownLevel>
+            <DropdownLevel handleLevel={handleLevel}></DropdownLevel>
           </div>
         )}
       </div>

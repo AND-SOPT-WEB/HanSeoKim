@@ -27,6 +27,7 @@ export const RankingBoardStyle = css`
 
 export const boardTopStyle = css`
   display: flex;
+
   margin-bottom: 1.5rem;
   & h1 {
     width: 90%;
