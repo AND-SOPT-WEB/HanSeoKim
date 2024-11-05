@@ -53,7 +53,6 @@ const Game = ({ level, startTimer, resetTimer, time, stopTimer }) => {
   };
   useEffect(() => {
     initCardArray();
-
     setShowModal(false);
   }, [level]);
 
@@ -65,10 +64,17 @@ const Game = ({ level, startTimer, resetTimer, time, stopTimer }) => {
       const secondClick = [...cardState.clickedCards, card];
       const remainCard = cardState.replaceCard;
 
-      const newVisibleCards = cardState.visibleCards.map((c) =>
-        c === card ? (remainCard.length > 0 ? remainCard.shift() : null) : c
-      );
+      const newVisibleCards = [...cardState.visibleCards];
 
+      newVisibleCards.forEach((c, index) => {
+        if (c === card) {
+          if (remainCard.length > 0) {
+            newVisibleCards[index] = remainCard.shift();
+          } else {
+            newVisibleCards[index] = null;
+          }
+        }
+      });
       setCardState((prev) => ({
         ...prev,
         visibleCards: newVisibleCards,
@@ -81,17 +87,17 @@ const Game = ({ level, startTimer, resetTimer, time, stopTimer }) => {
 
   const handleReset = () => {
     resetTimer();
-
     initCardArray();
     setShowModal(false);
   };
 
-  let gameDatas = [];
   let userData = {
     currentTime: "",
     level: level,
     playTime: "",
   };
+  let gameDatas = localStorage.getItem("gameDatas");
+  gameDatas = gameDatas ? JSON.parse(gameDatas) : [];
 
   useEffect(() => {
     if (
@@ -100,12 +106,12 @@ const Game = ({ level, startTimer, resetTimer, time, stopTimer }) => {
     ) {
       stopTimer();
       setShowModal(true);
-      userData.currentTime = Date.now();
+      userData.currentTime = new Date(Date.now()).toLocaleString();
       userData.playTime = time;
-      gameDatas = [...gameDatas, userData];
+      gameDatas.push(userData);
       localStorage.setItem("gameDatas", JSON.stringify(gameDatas));
     }
-  }, [cardState.clickedCards, cardState.cardArray.length, stopTimer]);
+  }, [cardState.clickedCards, cardState.cardArray.length]);
 
   return (
     <>

@@ -3,6 +3,8 @@ import { RankingBoardStyle } from "./RankingBoard.style";
 import { boardTopStyle } from "./RankingBoard.style";
 
 const RankingBoard = () => {
+  const rankingDatas = JSON.parse(localStorage.getItem("gameDatas"));
+  console.log(rankingDatas);
   return (
     <div css={RankingBoardStyle}>
       <div css={boardTopStyle}>
@@ -17,7 +19,17 @@ const RankingBoard = () => {
             <th>플레이 시간</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {rankingDatas.map((rank) => {
+            return (
+              <tr key={rank.currentTime}>
+                <td>{rank.currentTime}</td>
+                <td>{rank.level}</td>
+                <td>{rank.playTime}</td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );
