@@ -6,10 +6,12 @@ import { layoutStyle } from "./MainLayout.style";
 import RankingBoard from "../RankingBoard/RankingBoard";
 import { useState } from "react";
 import Game from "../Game/Game";
+import { useTimer } from "../../hooks/useTimer";
 
 const MainLayout = () => {
   const [tab, setTab] = useState("게임");
   const [level, setLevel] = useState("1");
+  const { time, startTimer, resetTimer, stopTimer } = useTimer();
 
   const handleLevel = (level) => {
     setLevel(level);
@@ -25,9 +27,19 @@ const MainLayout = () => {
         handleSwitchTab={handleSwitchTab}
         tab={tab}
         handleLevel={handleLevel}
+        time={time}
       ></Header>
       <div css={layoutStyle}>
-        {tab === "랭킹" ? <RankingBoard /> : <Game level={level}></Game>}
+        {tab === "랭킹" ? (
+          <RankingBoard />
+        ) : (
+          <Game
+            level={level}
+            startTimer={startTimer}
+            resetTimer={resetTimer}
+            stopTimer={stopTimer}
+          ></Game>
+        )}
       </div>
     </div>
   );

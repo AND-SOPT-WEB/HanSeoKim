@@ -6,7 +6,7 @@ import { shuffleCard } from "../../utils/shuffleCard";
 import NumCard from "./NumCard";
 import { useState, useEffect } from "react";
 
-const Game = ({ level }) => {
+const Game = ({ level, startTimer, resetTimer, stopTimer }) => {
   const [cardState, setCardState] = useState({
     cardArray: [],
     visibleCards: [],
@@ -51,10 +51,14 @@ const Game = ({ level }) => {
     };
 
     initCardArray();
+    resetTimer();
   }, [level]);
 
   const handleClickCard = (card) => {
     if (card === cardState.nextNumber) {
+      if (cardState.nextNumber === 1) {
+        startTimer();
+      }
       const secondClick = [...cardState.clickedCards, card];
       const remainCard = cardState.replaceCard;
 
@@ -71,6 +75,9 @@ const Game = ({ level }) => {
       }));
     }
   };
+  if (cardState.clickedCards.length === cardState.cardArray.length) {
+    stopTimer();
+  }
 
   return (
     <>
