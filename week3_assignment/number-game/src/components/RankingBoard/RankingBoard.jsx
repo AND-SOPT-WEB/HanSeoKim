@@ -1,25 +1,25 @@
 /** @jsxImportSource @emotion/react */
 import { RankingBoardStyle } from "./RankingBoard.style";
 import { boardTopStyle } from "./RankingBoard.style";
+import {
+  getGameData,
+  sortGameData,
+  removeGameData,
+} from "../../utils/saveData";
+import { useState } from "react";
 
 const RankingBoard = () => {
-  const rankingDatas = JSON.parse(localStorage.getItem("gameDatas")) || [];
-  const sortedDatas = rankingDatas.sort((a, b) => {
-    if (b.level !== a.level) {
-      return b.level - a.level;
-    }
-    return Number(a.playTime) - Number(b.playTime);
-  });
-
-  const resetRanking = () => {
-    localStorage.removeItem("gameDatas");
+  const [rankData, setRankData] = useState(sortGameData(getGameData()));
+  const handleReset = () => {
+    removeGameData();
+    setRankData(getGameData());
   };
 
   return (
     <div css={RankingBoardStyle}>
       <div css={boardTopStyle}>
         <h1>랭킹</h1>
-        <button onClick={() => resetRanking()}>초기화</button>
+        <button onClick={() => handleReset()}>초기화</button>
       </div>
       <table>
         <thead>
@@ -30,7 +30,7 @@ const RankingBoard = () => {
           </tr>
         </thead>
         <tbody>
-          {sortedDatas?.map((rank) => {
+          {rankData?.map((rank) => {
             return (
               <tr key={rank.currentTime}>
                 <td>{rank.currentTime}</td>

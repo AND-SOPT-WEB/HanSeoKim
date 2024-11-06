@@ -7,3 +7,10 @@ export const gameStyle = (levelGrid) => css`
   gap: 0.5rem;
   color: white;
 `;
+
+export const textStyle = () => css`
+  color: white;
+  font-size: 1rem;
+  margin: 1rem;
+  text-align: center;
+`;

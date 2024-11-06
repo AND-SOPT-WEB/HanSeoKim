@@ -1,89 +1,18 @@
 /** @jsxImportSource @emotion/react */
 
-import { gameStyle } from "./Game.style";
-import { shuffleCard } from "../../utils/shuffleCard";
+import { gameStyle, textStyle } from "./Game.style";
 import { createPortal } from "react-dom";
 import ModalContent from "../Modal/ModalContent";
+import { LEVELS } from "../../constants/constants";
+import useCardState from "../../hooks/useCardState";
+import { getGameData, saveGameData } from "../../utils/saveData";
 
 import NumCard from "./NumCard";
 import { useState, useEffect } from "react";
 
 const Game = ({ level, startTimer, resetTimer, time, stopTimer }) => {
   const [showModal, setShowModal] = useState(false);
-  const [cardState, setCardState] = useState({
-    cardArray: [],
-    visibleCards: [],
-    clickedCards: [],
-    replaceCard: [],
-    nextNumber: 1,
-  });
-
-  let levelGrid;
-  if (level === "1") {
-    levelGrid = 3;
-  } else if (level === "2") {
-    levelGrid = 4;
-  } else {
-    levelGrid = 5;
-  }
-
-  const initCardArray = () => {
-    let cardArray = [];
-    switch (level) {
-      case "1":
-        cardArray = Array.from({ length: 18 }, (_, index) => index + 1);
-        break;
-      case "2":
-        cardArray = Array.from({ length: 32 }, (_, index) => index + 1);
-        break;
-      case "3":
-        cardArray = Array.from({ length: 50 }, (_, index) => index + 1);
-        break;
-    }
-
-    setCardState({
-      cardArray: cardArray,
-      visibleCards: shuffleCard(
-        cardArray.slice(0, Math.floor(cardArray.length / 2))
-      ),
-      clickedCards: [],
-      nextNumber: 1,
-      replaceCard: shuffleCard(cardArray.slice(cardArray.length / 2)),
-    });
-  };
-  useEffect(() => {
-    initCardArray();
-    setShowModal(false);
-  }, [level]);
-
-  const handleClickCard = (card) => {
-    if (card === cardState.nextNumber) {
-      if (cardState.nextNumber === 1) {
-        startTimer();
-      }
-      const secondClick = [...cardState.clickedCards, card];
-      const remainCard = cardState.replaceCard;
-
-      const newVisibleCards = [...cardState.visibleCards];
-
-      newVisibleCards.forEach((c, index) => {
-        if (c === card) {
-          if (remainCard.length > 0) {
-            newVisibleCards[index] = remainCard.shift();
-          } else {
-            newVisibleCards[index] = null;
-          }
-        }
-      });
-      setCardState((prev) => ({
-        ...prev,
-        visibleCards: newVisibleCards,
-        clickedCards: secondClick,
-        nextNumber: prev.nextNumber + 1,
-        replaceCard: remainCard,
-      }));
-    }
-  };
+  const { cardState, initCardArray, handleClickCard } = useCardState(level);
 
   const handleReset = () => {
     resetTimer();
@@ -91,49 +20,55 @@ const Game = ({ level, startTimer, resetTimer, time, stopTimer }) => {
     setShowModal(false);
   };
 
-  let userData = {
-    currentTime: "",
-    level: level,
-    playTime: "",
-  };
-  let gameDatas = localStorage.getItem("gameDatas");
-  gameDatas = gameDatas ? JSON.parse(gameDatas) : [];
+  useEffect(() => {
+    initCardArray();
+    setShowModal(false);
+  }, [level]);
 
   useEffect(() => {
+    if (cardState.nextNumber === 2) {
+      startTimer();
+    }
     if (
       cardState.clickedCards.length === cardState.cardArray.length &&
       cardState.cardArray.length !== 0
     ) {
       stopTimer();
       setShowModal(true);
-      userData.currentTime = new Date(Date.now()).toLocaleString();
-      userData.playTime = time;
-      gameDatas.push(userData);
-      localStorage.setItem("gameDatas", JSON.stringify(gameDatas));
+      let userData = {
+        currentTime: new Date(Date.now()).toLocaleString(),
+        level: level,
+        playTime: time,
+      };
+      const gameDatas = getGameData();
+      saveGameData([...gameDatas, userData]);
     }
   }, [cardState.clickedCards, cardState.cardArray.length]);
 
   return (
     <>
-      <p>다음 클릭할 숫자: {cardState.nextNumber}</p>
-      <div css={gameStyle(levelGrid)}>
-        {cardState.visibleCards.map((card, index) =>
-          card !== null ? (
-            <NumCard
-              key={index}
-              number={card}
-              onClick={() => handleClickCard(card)}
-              isReplaced={
-                !cardState.cardArray
-                  .slice(0, Math.floor(cardState.cardArray.length / 2))
-                  .includes(card)
-              }
-            />
-          ) : (
-            <div key={index} style={{ visibility: "hidden" }}></div>
-          )
-        )}
+      <div>
+        <p css={textStyle}>다음 클릭할 숫자: {cardState.nextNumber}</p>
+        <div css={gameStyle(LEVELS[level].levelGrid)}>
+          {cardState.visibleCards.map((card, index) =>
+            card !== null ? (
+              <NumCard
+                key={index}
+                number={card}
+                onClick={() => handleClickCard(card)}
+                isReplaced={
+                  !cardState.cardArray
+                    .slice(0, Math.floor(cardState.cardArray.length / 2))
+                    .includes(card)
+                }
+              />
+            ) : (
+              <div key={index} style={{ display: "hidden" }}></div>
+            )
+          )}
+        </div>
       </div>
+
       {showModal &&
         createPortal(
           <ModalContent
