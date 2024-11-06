@@ -23,7 +23,6 @@ const MainLayout = () => {
   useEffect(() => {
     resetTimer();
   }, [level, tab]);
-
   return (
     <div css={mainLayoutStyle}>
       <Header
