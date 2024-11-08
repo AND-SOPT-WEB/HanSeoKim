@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import React from "react";
 
 import { gameStyle, textStyle } from "./Game.style";
 import { createPortal } from "react-dom";
@@ -6,13 +7,14 @@ import ModalContent from "../Modal/ModalContent";
 import { LEVELS } from "../../constants/constants";
 import useCardState from "../../hooks/useCardState";
 import { getGameData, saveGameData } from "../../utils/saveData";
-
+import { backdropStyle } from "../Modal/ModalContent.style";
 import NumCard from "./NumCard";
 import { useState, useEffect } from "react";
 
-const Game = ({ level, startTimer, resetTimer, time, stopTimer }) => {
+const Game = ({ level, startTimer, time, resetTimer, stopTimer }) => {
   const [showModal, setShowModal] = useState(false);
   const { cardState, initCardArray, handleClickCard } = useCardState(level);
+  console.log("렌더링");
 
   const handleReset = () => {
     resetTimer();
@@ -71,14 +73,16 @@ const Game = ({ level, startTimer, resetTimer, time, stopTimer }) => {
 
       {showModal &&
         createPortal(
-          <ModalContent
-            onClose={() => setShowModal(false)}
-            handleReset={handleReset}
-          />,
+          <div css={backdropStyle}>
+            <ModalContent
+              onClose={() => setShowModal(false)}
+              handleReset={handleReset}
+            />
+          </div>,
           document.body
         )}
     </>
   );
 };
 
-export default Game;
+export default React.memo(Game);

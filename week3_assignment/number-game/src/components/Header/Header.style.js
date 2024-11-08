@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 
 export const headerStyle = css`
   display: flex;
-  padding-left: 3rem;
+  padding: 2rem;
   margin-bottom: 4rem;
   height: 5rem;
   align-items: center;
@@ -13,12 +13,17 @@ export const headerStyle = css`
   & div {
     display: flex;
   }
+
+  & h1 {
+    display: flex;
+    width: 8rem;
+  }
 `;
 
 export const btnWrapper = css`
   justify-content: space-between;
   align-items: center;
-  width: 80%;
+  width: 100%;
   margin-left: 2rem;
 `;
 

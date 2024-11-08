@@ -4,7 +4,7 @@ import { mainLayoutStyle } from "./MainLayout.style";
 import Header from "../Header/Header";
 import { layoutStyle } from "./MainLayout.style";
 import RankingBoard from "../RankingBoard/RankingBoard";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Game from "../Game/Game";
 import { useTimer } from "../../hooks/useTimer";
 
@@ -15,14 +15,14 @@ const MainLayout = () => {
 
   const handleLevel = (level) => {
     setLevel(level);
+    resetTimer();
   };
 
   const handleSwitchTab = (btnTxt) => {
     setTab(btnTxt);
-  };
-  useEffect(() => {
     resetTimer();
-  }, [level, tab]);
+  };
+
   return (
     <div css={mainLayoutStyle}>
       <Header
