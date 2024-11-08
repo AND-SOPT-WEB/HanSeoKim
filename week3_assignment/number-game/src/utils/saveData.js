@@ -3,8 +3,14 @@ export const getGameData = () => {
   return gameData ? JSON.parse(gameData) : [];
 };
 
-export const saveGameData = (data) => {
-  localStorage.setItem("gameDatas", JSON.stringify(data));
+export const saveGameData = (level, time) => {
+  let userData = {
+    currentTime: new Date(Date.now()).toLocaleString(),
+    level: level,
+    playTime: time,
+  };
+  const gameDatas = getGameData();
+  localStorage.setItem("gameDatas", JSON.stringify([...gameDatas, userData]));
 };
 
 export const sortGameData = (data) => {

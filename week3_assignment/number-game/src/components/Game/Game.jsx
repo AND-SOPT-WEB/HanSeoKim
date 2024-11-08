@@ -2,14 +2,14 @@
 import React from "react";
 
 import { gameStyle, textStyle } from "./Game.style";
-import { createPortal } from "react-dom";
+import ModalContainer from "../Modal/ModalContainer";
+
 import ModalContent from "../Modal/ModalContent";
 import { LEVELS } from "../../constants/constants";
 import useCardState from "../../hooks/useCardState";
-import { getGameData, saveGameData } from "../../utils/saveData";
-import { backdropStyle } from "../Modal/ModalContent.style";
 import NumCard from "./NumCard";
 import { useState, useEffect } from "react";
+import { saveGameData } from "../../utils/saveData";
 
 const Game = ({ level, startTimer, time, resetTimer, stopTimer }) => {
   const [showModal, setShowModal] = useState(false);
@@ -37,13 +37,7 @@ const Game = ({ level, startTimer, time, resetTimer, stopTimer }) => {
     ) {
       stopTimer();
       setShowModal(true);
-      let userData = {
-        currentTime: new Date(Date.now()).toLocaleString(),
-        level: level,
-        playTime: time,
-      };
-      const gameDatas = getGameData();
-      saveGameData([...gameDatas, userData]);
+      saveGameData(level, time);
     }
   }, [cardState.clickedCards, cardState.cardArray.length]);
 
@@ -71,16 +65,11 @@ const Game = ({ level, startTimer, time, resetTimer, stopTimer }) => {
         </div>
       </div>
 
-      {showModal &&
-        createPortal(
-          <div css={backdropStyle}>
-            <ModalContent
-              onClose={() => setShowModal(false)}
-              handleReset={handleReset}
-            />
-          </div>,
-          document.body
-        )}
+      {showModal && (
+        <ModalContainer>
+          <ModalContent handleReset={handleReset}></ModalContent>
+        </ModalContainer>
+      )}
     </>
   );
 };

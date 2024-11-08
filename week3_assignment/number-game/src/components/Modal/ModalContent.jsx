@@ -3,7 +3,7 @@ import { modalStyle, buttonStyle } from "./ModalContent.style";
 
 const ModalContent = ({ handleReset }) => {
   let userData = JSON.parse(localStorage.getItem("gameDatas"));
-  console.log(userData);
+
   return (
     <div className="modal" css={modalStyle}>
       <div>
