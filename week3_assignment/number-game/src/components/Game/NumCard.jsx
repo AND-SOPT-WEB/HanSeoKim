@@ -8,9 +8,6 @@ const NumCard = ({ number, isReplaced, onClick }) => {
   const handleCardClick = () => {
     onClick();
     setIsClicked(true);
-    setTimeout(() => {
-      setIsClicked(false);
-    }, 500);
   };
 
   return (
