@@ -18,7 +18,7 @@ const MyPage = () => {
             <p onClick={() => setSwitchTab("정보")}>내 정보</p>
           </div>
           <div>
-            <p>로그아웃</p>
+            <button className="logout_btn">로그아웃</button>
           </div>
         </header>
         <main css={mypageText}>
