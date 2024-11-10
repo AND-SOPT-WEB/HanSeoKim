@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { mypageInput } from "./MyPage.style";
-import { mypageBtn } from "./MyPage.style";
+import Button from "../../components/common/Button/Button";
 
 const SearchHobby = () => {
   return (
@@ -10,9 +10,7 @@ const SearchHobby = () => {
       <h2>다른 사람들의 취미</h2>
       <div className="search_sec">
         <input css={mypageInput} type="text" placeholder="사용자 번호" />
-        <button css={mypageBtn} type="button">
-          검색
-        </button>
+        <Button type="button">검색</Button>
       </div>
     </>
   );

@@ -31,20 +31,6 @@ export const inputStyle = (Theme: ThemeType) => css`
   }
 `;
 
-export const buttonStyle = (Theme: ThemeType) => css`
-  width: 21rem;
-  padding: 0.7rem 0.5rem;
-  color: ${Theme.color.white};
-  background-color: ${Theme.color.lightGray_1};
-  border: 0px solid;
-  border-radius: 5px;
-  cursor: pointer;
-  :hover {
-    background-color: ${Theme.color.lightGray_3};
-    transition: all 1s;
-  }
-`;
-
 export const pStyle = (Theme: ThemeType) => css`
   font-size: ${Theme.text.small.fontSize};
   color: ${Theme.color.lightGray_3};

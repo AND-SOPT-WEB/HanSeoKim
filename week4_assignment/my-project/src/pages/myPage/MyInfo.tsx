@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { mypageInput, mypageBtn } from "./MyPage.style";
+import { mypageInput } from "./MyPage.style";
+import Button from "../../components/common/Button/Button";
 
 const MyInfo = () => {
   return (
@@ -13,9 +14,7 @@ const MyInfo = () => {
       <h2>새 취미</h2>
       <div className="search_sec">
         <input css={mypageInput} type="text" />
-        <button css={mypageBtn} type="button">
-          수정하기
-        </button>
+        <Button type="button">수정하기</Button>
       </div>
     </>
   );

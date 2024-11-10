@@ -4,8 +4,8 @@ import {
   funnelTitleStyle,
   funnelInputStyle,
   funnelWrapperStyle,
-  funnelButtonStyle,
 } from "./funnelContents.style";
+import Button from "../common/Button/Button";
 
 const Hobby = () => {
   const [inputValue, setInputValue] = useState("");
@@ -24,9 +24,12 @@ const Hobby = () => {
           placeholder="취미를 입력해주세요."
           onChange={handleInputChange}
         />
-        <button type="button" css={funnelButtonStyle} disabled={disabled}>
-          회원가입
-        </button>
+
+        <form action="">
+          <Button type="button" disabled={disabled}>
+            회원가입
+          </Button>
+        </form>
       </div>
     </>
   );

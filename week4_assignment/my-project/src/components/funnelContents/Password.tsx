@@ -4,8 +4,8 @@ import {
   funnelTitleStyle,
   funnelInputStyle,
   funnelWrapperStyle,
-  funnelButtonStyle,
 } from "./funnelContents.style";
+import Button from "../common/Button/Button";
 
 interface funnelProp {
   onClick: () => void;
@@ -33,14 +33,10 @@ const Password = ({ onClick }: funnelProp) => {
           type="text"
           placeholder="비밀번호 확인"
         />
-        <button
-          disabled={disabled}
-          type="button"
-          css={funnelButtonStyle}
-          onClick={onClick}
-        >
+
+        <Button type="button" disabled={disabled} onClick={onClick}>
           다음
-        </button>
+        </Button>
       </div>
     </>
   );

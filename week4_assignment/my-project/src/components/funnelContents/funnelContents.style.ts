@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { Theme } from "../../../styles/theme";
+import { Theme } from "../../styles/theme";
 
 export const funnelWrapperStyle = css`
   display: flex;
