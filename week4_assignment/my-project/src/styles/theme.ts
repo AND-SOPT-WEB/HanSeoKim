@@ -11,8 +11,8 @@ const color = {
 
 const text = {
   large: {
-    fontSize: "16px",
-    lineHeight: "19px",
+    fontSize: "24px",
+    lineHeight: "24px",
   },
   medium: {
     fontSize: "14px",
@@ -24,7 +24,12 @@ const text = {
   },
 };
 
-export const Theme = {
+export type ThemeType = {
+  color: typeof color;
+  text: typeof text;
+};
+
+export const Theme: ThemeType = {
   color,
   text,
 };
