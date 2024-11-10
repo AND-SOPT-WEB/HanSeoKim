@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import {
   funnelTitleStyle,
   funnelInputStyle,

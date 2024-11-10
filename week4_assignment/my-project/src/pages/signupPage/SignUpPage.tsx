@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 
 import { useState } from "react";
-import Name from "./Name";
-import Password from "./Password";
-import Hobby from "./Hobby";
+import Name from "./funnelContents/Name";
+import Password from "./funnelContents/Password";
+import Hobby from "./funnelContents/Hobby";
 import { Theme } from "../../styles/theme";
 import { headerStyle } from "./SignUpPage.style";
 import { signupStyle } from "./SignUpPage.style";
-import { funnelPstyle } from "./funnelContents.style";
+import { funnelPstyle } from "./funnelContents/funnelContents.style";
 import { Link } from "react-router-dom";
 
 const SignUpPage = () => {
