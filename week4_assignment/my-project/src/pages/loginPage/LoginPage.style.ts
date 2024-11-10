@@ -33,7 +33,7 @@ export const inputStyle = (Theme: ThemeType) => css`
 
 export const buttonStyle = (Theme: ThemeType) => css`
   width: 21rem;
-  padding: 0.5rem;
+  padding: 0.7rem 0.5rem;
   color: ${Theme.color.white};
   background-color: ${Theme.color.lightGray_1};
   border: 0px solid;

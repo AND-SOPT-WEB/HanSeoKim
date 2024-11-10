@@ -15,7 +15,7 @@ const text = {
     lineHeight: "24px",
   },
   medium: {
-    fontSize: "14px",
+    fontSize: "20px",
     lineHeight: "17px",
   },
   small: {
