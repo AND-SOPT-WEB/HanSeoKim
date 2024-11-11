@@ -50,14 +50,15 @@ const SignUpPage = () => {
   };
 
   const handleClickSignUpBtn = async () => {
-    const isSuccess = await postSignUpMember({
+    const userNo = await postSignUpMember({
       username,
       password,
       hobby,
       isSuccess: false,
     });
 
-    if (isSuccess) {
+    if (userNo) {
+      alert(`회원가입 성공! 회원번호: ${userNo}`);
       navigate("/");
     }
   };
@@ -69,7 +70,10 @@ const SignUpPage = () => {
         {step === "이름" && (
           <Name
             handleSaveInputValue={handleSaveInputValue}
-            onClick={() => setStep("비밀번호")}
+            onClick={() => {
+              setStep("비밀번호");
+              setDisabled(true);
+            }}
             disabled={disabled}
           ></Name>
         )}
@@ -77,7 +81,10 @@ const SignUpPage = () => {
           <Password
             handleSaveInputValue={handleSaveInputValue}
             disabled={disabled}
-            onClick={() => setStep("취미")}
+            onClick={() => {
+              setStep("취미");
+              setDisabled(true);
+            }}
           ></Password>
         )}
         {step === "취미" && (

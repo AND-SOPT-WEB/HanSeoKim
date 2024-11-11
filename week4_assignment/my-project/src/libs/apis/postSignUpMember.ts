@@ -1,5 +1,4 @@
 import { api } from "../axios";
-import axios from "axios";
 
 interface SignupData {
   username: string;
@@ -20,10 +19,11 @@ const postSignUpMember = async ({
     hobby: hobby,
   };
   try {
-    await api.post("/user", signupReqBody);
+    const response = await api.post("/user", signupReqBody);
+    const userNo = response.data.result.no;
     isSuccess = true;
     if (username && password && hobby) {
-      return isSuccess;
+      return userNo;
     } else {
       return !isSuccess;
     }

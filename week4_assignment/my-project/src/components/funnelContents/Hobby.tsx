@@ -17,7 +17,7 @@ interface funnelProp {
 }
 const Hobby = ({
   handleSaveInputValue,
-  disabled,
+  disabled = true,
   handleClickSignUpBtn,
 }: funnelProp) => {
   return (
@@ -31,15 +31,13 @@ const Hobby = ({
           onChange={(e) => handleSaveInputValue(e, "HOBBY")}
         />
 
-        <form action="">
-          <Button
-            type="button"
-            disabled={disabled}
-            onClick={() => handleClickSignUpBtn()}
-          >
-            회원가입
-          </Button>
-        </form>
+        <Button
+          type="button"
+          disabled={disabled}
+          onClick={() => handleClickSignUpBtn()}
+        >
+          회원가입
+        </Button>
       </div>
     </>
   );

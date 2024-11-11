@@ -16,7 +16,11 @@ interface funnelProp {
   disabled: boolean;
 }
 
-const Password = ({ onClick, handleSaveInputValue, disabled }: funnelProp) => {
+const Password = ({
+  onClick,
+  handleSaveInputValue,
+  disabled = true,
+}: funnelProp) => {
   return (
     <>
       <div css={funnelWrapperStyle}>
