@@ -6,6 +6,7 @@ import Password from "../../components/funnelContents/Password";
 import Hobby from "../../components/funnelContents/Hobby";
 import { Theme } from "../../styles/theme";
 import { headerStyle, signupStyle } from "./SignUpPage.style";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 import { funnelPstyle } from "../../components/funnelContents/funnelContents.style";
 import { Link, useNavigate } from "react-router-dom";
@@ -40,38 +41,15 @@ const SignUpPage = () => {
     }
   }, [password, confirmPwd]);
 
-  const handleSaveInputValue = (
-    e: ChangeEvent<HTMLInputElement>,
-    type: string
-  ) => {
-    const inputLength = e.target.value.length;
-    switch (type) {
-      case "ID":
-        setUserInputs((prev) => ({ ...prev, username: e.target.value }));
-        setDisabled(inputLength <= 0);
-        setIsError(false);
-        if (inputLength > 8) {
-          setDisabled(true);
-          setIsError(true);
-        }
-        break;
-      case "PASSWORD":
-        setUserInputs((prev) => ({ ...prev, password: e.target.value }));
+  const handleSaveInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    const inputLength = value.length;
 
-        break;
-      case "CONFIRM":
-        setUserInputs((prev) => ({ ...prev, confirmPwd: e.target.value }));
+    setUserInputs((prev) => ({ ...prev, [name]: value }));
 
-        break;
-      case "HOBBY":
-        setUserInputs((prev) => ({ ...prev, hobby: e.target.value }));
-        setDisabled(inputLength <= 0);
-        setIsError(false);
-        if (inputLength > 8) {
-          setDisabled(true);
-          setIsError(true);
-        }
-        break;
+    if (name === "username" || name === "hobby") {
+      setDisabled(inputLength === 0 || inputLength > 8);
+      setIsError(inputLength > 8);
     }
   };
 

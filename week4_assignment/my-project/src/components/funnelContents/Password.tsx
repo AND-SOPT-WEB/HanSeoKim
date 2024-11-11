@@ -38,6 +38,7 @@ const Password = ({
       <div css={funnelWrapperStyle}>
         <h2 css={funnelTitleStyle}>비밀번호</h2>
         <input
+          name="password"
           css={funnelInputStyle(isError)}
           type="password"
           placeholder="비밀번호를 입력해주세요."
@@ -45,6 +46,7 @@ const Password = ({
         />
 
         <input
+          name="confirmPwd"
           onChange={(e) => handleSaveInputValue(e, "CONFIRM")}
           css={funnelInputStyle(isError)}
           type="password"

@@ -28,6 +28,7 @@ const Hobby = ({
       <div css={funnelWrapperStyle}>
         <h2 css={funnelTitleStyle}>취미</h2>
         <input
+          name="hobby"
           css={funnelInputStyle(isError)}
           type="text"
           placeholder="취미를 입력해주세요."

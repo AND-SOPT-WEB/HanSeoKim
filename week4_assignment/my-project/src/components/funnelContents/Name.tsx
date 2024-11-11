@@ -30,6 +30,7 @@ const Name = ({
       <div css={funnelWrapperStyle}>
         <h2 css={funnelTitleStyle}>이름</h2>
         <input
+          name="username"
           css={funnelInputStyle(isError)}
           type="text"
           placeholder="사용자 이름을 입력해주세요."
