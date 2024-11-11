@@ -38,9 +38,11 @@ const Password = ({
           placeholder="비밀번호 확인"
         />
 
-        <Button type="button" disabled={disabled} onClick={onClick}>
-          다음
-        </Button>
+        <form action="">
+          <Button type="button" disabled={disabled} onClick={onClick}>
+            다음
+          </Button>
+        </form>
       </div>
     </>
   );

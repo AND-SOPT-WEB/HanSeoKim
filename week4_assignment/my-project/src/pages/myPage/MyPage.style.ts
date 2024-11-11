@@ -74,3 +74,11 @@ export const mypageInput = css`
     color: ${Theme.color.lightGray_3};
   }
 `;
+
+export const hobbyPstyle = css`
+  display: flex;
+  align-self: flex-start;
+  color: ${Theme.color.lightGray_3};
+  font-size: ${Theme.text.medium.fontSize};
+  margin-bottom: 2rem;
+`;

@@ -1,5 +1,4 @@
 import { api } from "../axios";
-import axios from "axios";
 
 interface SignInData {
   userId: string;
@@ -14,12 +13,13 @@ const getUserToken = async (userInfo: SignInData) => {
   };
   try {
     const response = await api.post("/login", signInReqBody);
+
     if (response.data.result.token) {
       return response.data.result.token;
     }
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.log(error.response);
+    if (error) {
+      console.log(error);
     }
   }
 };

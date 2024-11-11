@@ -31,13 +31,15 @@ const Hobby = ({
           onChange={(e) => handleSaveInputValue(e, "HOBBY")}
         />
 
-        <Button
-          type="button"
-          disabled={disabled}
-          onClick={() => handleClickSignUpBtn()}
-        >
-          회원가입
-        </Button>
+        <form action="">
+          <Button
+            type="button"
+            disabled={disabled}
+            onClick={() => handleClickSignUpBtn()}
+          >
+            회원가입
+          </Button>
+        </form>
       </div>
     </>
   );

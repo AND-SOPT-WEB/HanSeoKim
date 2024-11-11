@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
 import Button from "../../components/common/Button/Button";
 import getUserToken from "../../libs/apis/getUserToken";
+import { useNavigate } from "react-router-dom";
 
 interface UserInfo {
   userId: string;
@@ -18,6 +19,7 @@ const LoginPage = () => {
     password: "",
   });
   const [errMsg, setErrMsg] = useState("");
+  const navigate = useNavigate();
   const handleChangeUserInput = (
     e: ChangeEvent<HTMLInputElement>,
     type: "ID" | "PASSWORD"
@@ -35,9 +37,11 @@ const LoginPage = () => {
     }
   };
 
-  const handleClickLoginBtn = () => {
-    getUserToken(userInfo);
+  const handleClickLoginBtn = async () => {
+    const token = await getUserToken(userInfo);
+    JSON.stringify(localStorage.setItem("userToken", token));
     setErrMsg("");
+    navigate("/mypage");
   };
 
   return (
@@ -61,7 +65,7 @@ const LoginPage = () => {
 
             <form action="" style={{ width: "100%" }}>
               <Button
-                type="submit"
+                type="button"
                 disabled={false}
                 onClick={handleClickLoginBtn}
               >
