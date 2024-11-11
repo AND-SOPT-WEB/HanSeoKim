@@ -7,6 +7,7 @@ const color = {
   darkGray_1: "#444B57",
   darkGray_2: "#2D323A",
   black: "black",
+  red: "red",
 };
 
 const text = {

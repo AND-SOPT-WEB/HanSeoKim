@@ -17,7 +17,7 @@ export const funnelTitleStyle = css`
   }
 `;
 
-export const funnelInputStyle = css`
+export const funnelInputStyle = (isError) => css`
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   width: 20rem;
@@ -26,6 +26,20 @@ export const funnelInputStyle = css`
   ::placeholder {
     color: ${Theme.color.lightGray_3};
   }
+  :focus {
+    outline: none;
+  }
+
+  ${isError &&
+  css`
+    border: 1px solid ${Theme.color.red};
+  `}
+`;
+
+export const errMsgStyle = css`
+  font-size: ${Theme.text.small.fontSize};
+  margin-bottom: 0.5rem;
+  color: ${Theme.color.red};
 `;
 
 export const funnelPstyle = css`

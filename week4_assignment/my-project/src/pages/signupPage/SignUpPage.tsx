@@ -14,6 +14,7 @@ import postSignUpMember from "../../libs/apis/postSignUpMember";
 const SignUpPage = () => {
   const [step, setStep] = useState("이름");
   const [disabled, setDisabled] = useState(true);
+  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
   const [userInputs, setUserInputs] = useState({
     username: "",
@@ -26,7 +27,11 @@ const SignUpPage = () => {
 
   //비밀번호 확인 로직
   useEffect(() => {
-    if (password && confirmPwd && password !== confirmPwd) {
+    setIsError(false);
+    if (password.length > 8 || confirmPwd.length > 8) {
+      setDisabled(true);
+      setIsError(true);
+    } else if (password && confirmPwd && password !== confirmPwd) {
       setDisabled(true);
     } else if (password && confirmPwd) {
       setDisabled(false);
@@ -39,10 +44,16 @@ const SignUpPage = () => {
     e: ChangeEvent<HTMLInputElement>,
     type: string
   ) => {
+    const inputLength = e.target.value.length;
     switch (type) {
       case "ID":
         setUserInputs((prev) => ({ ...prev, username: e.target.value }));
-        setDisabled(e.target.value.length <= 0);
+        setDisabled(inputLength <= 0);
+        setIsError(false);
+        if (inputLength > 8) {
+          setDisabled(true);
+          setIsError(true);
+        }
         break;
       case "PASSWORD":
         setUserInputs((prev) => ({ ...prev, password: e.target.value }));
@@ -54,7 +65,12 @@ const SignUpPage = () => {
         break;
       case "HOBBY":
         setUserInputs((prev) => ({ ...prev, hobby: e.target.value }));
-        setDisabled(e.target.value.length <= 0);
+        setDisabled(inputLength <= 0);
+        setIsError(false);
+        if (inputLength > 8) {
+          setDisabled(true);
+          setIsError(true);
+        }
         break;
     }
   };
@@ -82,8 +98,10 @@ const SignUpPage = () => {
             onClick={() => {
               setStep("비밀번호");
               setDisabled(true);
+              setIsError(false);
             }}
             disabled={disabled}
+            isError={isError}
           ></Name>
         )}
         {step === "비밀번호" && (
@@ -93,7 +111,10 @@ const SignUpPage = () => {
             onClick={() => {
               setStep("취미");
               setDisabled(true);
+              setIsError(false);
             }}
+            isError={isError}
+            userInputs={userInputs}
           ></Password>
         )}
         {step === "취미" && (
@@ -101,6 +122,7 @@ const SignUpPage = () => {
             handleSaveInputValue={handleSaveInputValue}
             disabled={disabled}
             handleClickSignUpBtn={handleClickSignUpBtn}
+            isError={isError}
           ></Hobby>
         )}
       </main>
