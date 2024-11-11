@@ -1,6 +1,17 @@
 import { css } from "@emotion/react";
+const fontStyle = css`
+  @font-face {
+    font-family: "GmarketSansMedium";
+    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+      format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+`;
 
 export const GlobalStyle = css`
+  ${fontStyle}
+
   html,
   body,
   div,
@@ -102,8 +113,11 @@ export const GlobalStyle = css`
   section {
     display: block;
   }
-  body {
+  body,
+  button,
+  ::placeholder {
     line-height: 1;
+    font-family: "GmarketSansMedium";
   }
   ol,
   ul {
