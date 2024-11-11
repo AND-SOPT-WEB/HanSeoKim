@@ -4,9 +4,16 @@ import { mypageHeaderStyle } from "./MyPage.style";
 import MyInfo from "./MyInfo";
 import SearchHobby from "./SearchHobby";
 import { mypageText } from "./MyPage.style";
+import { useNavigate } from "react-router-dom";
 
 const MyPage = () => {
   const [switchTab, setSwitchTab] = useState("취미");
+  const navigate = useNavigate();
+
+  const handleClickLogout = () => {
+    localStorage.removeItem("userToken");
+    navigate("/");
+  };
 
   return (
     <>
@@ -18,7 +25,9 @@ const MyPage = () => {
             <p onClick={() => setSwitchTab("정보")}>내 정보</p>
           </div>
           <div>
-            <button className="logout_btn">로그아웃</button>
+            <button className="logout_btn" onClick={handleClickLogout}>
+              로그아웃
+            </button>
           </div>
         </header>
         <main css={mypageText}>

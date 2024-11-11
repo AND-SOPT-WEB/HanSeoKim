@@ -10,7 +10,7 @@ const getUserHobby = async ({ userToken, userNo }: HobbyData) => {
   try {
     const response = await api.get(`/user/${userNo}/hobby`, {
       headers: {
-        Authorization: `Bearer ${userToken}`,
+        token: userToken,
       },
     });
     return response.data.result.hobby;
