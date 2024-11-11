@@ -22,11 +22,16 @@ const postSignUpMember = async ({
   try {
     await api.post("/user", signupReqBody);
     isSuccess = true;
-    return isSuccess;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      alert(error.response);
+    if (username && password && hobby) {
+      return isSuccess;
+    } else {
+      return !isSuccess;
     }
+  } catch (error) {
+    if (error) {
+      console.log(error);
+    }
+    return false;
   }
 };
 

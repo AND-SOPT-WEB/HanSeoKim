@@ -7,13 +7,19 @@ import {
 } from "./funnelContents.style";
 import Button from "../common/Button/Button";
 
-const Hobby = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [disabled, setDisabled] = useState(true);
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    setDisabled(e.target.value.length <= 0);
-  };
+interface funnelProp {
+  handleSaveInputValue: (
+    e: ChangeEvent<HTMLInputElement>,
+    type: string
+  ) => void;
+  disabled: boolean;
+  handleClickSignUpBtn: () => void;
+}
+const Hobby = ({
+  handleSaveInputValue,
+  disabled,
+  handleClickSignUpBtn,
+}: funnelProp) => {
   return (
     <>
       <div css={funnelWrapperStyle}>
@@ -22,11 +28,15 @@ const Hobby = () => {
           css={funnelInputStyle}
           type="text"
           placeholder="취미를 입력해주세요."
-          onChange={handleInputChange}
+          onChange={(e) => handleSaveInputValue(e, "HOBBY")}
         />
 
         <form action="">
-          <Button type="button" disabled={disabled}>
+          <Button
+            type="button"
+            disabled={disabled}
+            onClick={() => handleClickSignUpBtn()}
+          >
             회원가입
           </Button>
         </form>

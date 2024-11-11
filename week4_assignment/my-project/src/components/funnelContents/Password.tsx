@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import {
   funnelTitleStyle,
   funnelInputStyle,
@@ -9,15 +9,14 @@ import Button from "../common/Button/Button";
 
 interface funnelProp {
   onClick: () => void;
+  handleSaveInputValue: (
+    e: ChangeEvent<HTMLInputElement>,
+    type: string
+  ) => void;
+  disabled: boolean;
 }
 
-const Password = ({ onClick }: funnelProp) => {
-  const [inputValue, setInputValue] = useState("");
-  const [disabled, setDisabled] = useState(true);
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    setDisabled(e.target.value.length <= 0);
-  };
+const Password = ({ onClick, handleSaveInputValue, disabled }: funnelProp) => {
   return (
     <>
       <div css={funnelWrapperStyle}>
@@ -26,9 +25,10 @@ const Password = ({ onClick }: funnelProp) => {
           css={funnelInputStyle}
           type="password"
           placeholder="비밀번호를 입력해주세요."
+          onChange={(e) => handleSaveInputValue(e, "PASSWORD")}
         />
         <input
-          onChange={handleInputChange}
+          onChange={(e) => handleSaveInputValue(e, "CONFIRM")}
           css={funnelInputStyle}
           type="password"
           placeholder="비밀번호 확인"

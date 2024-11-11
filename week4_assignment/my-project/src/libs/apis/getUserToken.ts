@@ -2,12 +2,12 @@ import { api } from "../axios";
 import axios from "axios";
 
 interface SignInData {
-  username: string;
+  userId: string;
   password: string;
-  isSuccess: boolean;
 }
 
-const getUserToken = async ({ username, password }: SignInData) => {
+const getUserToken = async (userInfo: SignInData) => {
+  const { userId: username, password } = userInfo;
   const signInReqBody = {
     username: username,
     password: password,
