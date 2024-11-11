@@ -70,6 +70,8 @@ const SignUpPage = () => {
     if (userNo) {
       alert(`회원가입 성공! 회원번호: ${userNo}`);
       navigate("/");
+    } else {
+      alert("회원가입 실패ㅠ");
     }
   };
 

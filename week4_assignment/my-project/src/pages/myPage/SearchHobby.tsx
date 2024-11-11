@@ -16,6 +16,9 @@ const SearchHobby = () => {
   const { userHobby, userError } = useGetUserHobby({ userToken, userNo });
 
   const handleClickSearch = () => {
+    if (userError) {
+      alert(userError);
+    }
     if (userHobby) {
       setHobby(userHobby);
     }
