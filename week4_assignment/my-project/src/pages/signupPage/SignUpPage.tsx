@@ -1,16 +1,15 @@
 /** @jsxImportSource @emotion/react */
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 import Name from "../../components/funnelContents/Name";
 import Password from "../../components/funnelContents/Password";
 import Hobby from "../../components/funnelContents/Hobby";
 import { Theme } from "../../styles/theme";
-import { headerStyle } from "./SignUpPage.style";
-import { signupStyle } from "./SignUpPage.style";
+import { headerStyle, signupStyle } from "./SignUpPage.style";
+
 import { funnelPstyle } from "../../components/funnelContents/funnelContents.style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import postSignUpMember from "../../libs/apis/postSignUpMember";
-import { useNavigate } from "react-router-dom";
 
 const SignUpPage = () => {
   const [step, setStep] = useState("이름");
@@ -25,6 +24,17 @@ const SignUpPage = () => {
 
   const { username, password, confirmPwd, hobby } = userInputs;
 
+  //비밀번호 확인 로직
+  useEffect(() => {
+    if (password && confirmPwd && password !== confirmPwd) {
+      setDisabled(true);
+    } else if (password && confirmPwd) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [password, confirmPwd]);
+
   const handleSaveInputValue = (
     e: ChangeEvent<HTMLInputElement>,
     type: string
@@ -36,11 +46,11 @@ const SignUpPage = () => {
         break;
       case "PASSWORD":
         setUserInputs((prev) => ({ ...prev, password: e.target.value }));
-        setDisabled(e.target.value.length <= 0 || confirmPwd.length <= 0);
+
         break;
       case "CONFIRM":
         setUserInputs((prev) => ({ ...prev, confirmPwd: e.target.value }));
-        setDisabled(e.target.value.length <= 0 || password.length <= 0);
+
         break;
       case "HOBBY":
         setUserInputs((prev) => ({ ...prev, hobby: e.target.value }));
