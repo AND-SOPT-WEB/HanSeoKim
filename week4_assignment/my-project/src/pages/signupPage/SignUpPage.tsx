@@ -52,14 +52,14 @@ const SignUpPage = () => {
     }
   };
 
-  const handleClickSignUpBtn = () => {
-    const userNo = postSignUpMember({
+  const handleClickSignUpBtn = async () => {
+    const userNo = await postSignUpMember({
       username,
       password,
       hobby,
     });
 
-    if (typeof userNo === "number") {
+    if (userNo) {
       alert(`회원가입 성공! 회원번호: ${userNo}`);
       navigate("/");
     }
