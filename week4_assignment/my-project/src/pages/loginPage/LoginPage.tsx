@@ -4,9 +4,11 @@ import { loginPageStyle } from "./LoginPage.style";
 import { Theme } from "../../styles/theme";
 import { inputStyle, headerStyle, pStyle } from "./LoginPage.style";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import Button from "../../components/common/Button/Button";
 
 const LoginPage = () => {
+  const [userInfo, setUserInfo] = useState({ userId: "", password: "" });
   return (
     <>
       <div css={loginPageStyle}>

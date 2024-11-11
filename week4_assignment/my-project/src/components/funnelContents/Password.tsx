@@ -24,13 +24,13 @@ const Password = ({ onClick }: funnelProp) => {
         <h2 css={funnelTitleStyle}>비밀번호</h2>
         <input
           css={funnelInputStyle}
-          type="text"
+          type="password"
           placeholder="비밀번호를 입력해주세요."
         />
         <input
           onChange={handleInputChange}
           css={funnelInputStyle}
-          type="text"
+          type="password"
           placeholder="비밀번호 확인"
         />
 
