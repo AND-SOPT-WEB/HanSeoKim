@@ -11,10 +11,7 @@ import Button from "../common/Button/Button";
 
 interface funnelProp {
   onClick: () => void;
-  handleSaveInputValue: (
-    e: ChangeEvent<HTMLInputElement>,
-    type: string
-  ) => void;
+  handleSaveInputValue: (e: ChangeEvent<HTMLInputElement>) => void;
   disabled: boolean;
   isError: boolean;
 }
@@ -34,7 +31,7 @@ const Name = ({
           css={funnelInputStyle(isError)}
           type="text"
           placeholder="사용자 이름을 입력해주세요."
-          onChange={(e) => handleSaveInputValue(e, "ID")}
+          onChange={(e) => handleSaveInputValue(e)}
         />
         {isError && <p css={errMsgStyle}>8글자 이내로 입력해주세요.</p>}
         <Button type="button" onClick={onClick} disabled={disabled}>

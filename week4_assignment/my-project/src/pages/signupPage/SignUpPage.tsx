@@ -6,7 +6,6 @@ import Password from "../../components/funnelContents/Password";
 import Hobby from "../../components/funnelContents/Hobby";
 import { Theme } from "../../styles/theme";
 import { headerStyle, signupStyle } from "./SignUpPage.style";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 import { funnelPstyle } from "../../components/funnelContents/funnelContents.style";
 import { Link, useNavigate } from "react-router-dom";

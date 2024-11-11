@@ -17,7 +17,7 @@ export const funnelTitleStyle = css`
   }
 `;
 
-export const funnelInputStyle = (isError) => css`
+export const funnelInputStyle = (isError: boolean) => css`
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   width: 20rem;
@@ -48,4 +48,12 @@ export const funnelPstyle = css`
   color: ${Theme.color.lightGray_3};
   text-decoration-color: ${Theme.color.lightGray_3};
   margin: 0.3rem;
+`;
+
+export const visibleBtn = css`
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  cursor: pointer;
+  color: ${Theme.color.lightGray_2};
 `;
