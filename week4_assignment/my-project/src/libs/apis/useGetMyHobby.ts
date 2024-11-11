@@ -23,7 +23,7 @@ const useGetMyHobby = (userToken: string | null) => {
 
   fetchData();
 
-  return { response, error };
+  return { myHobby: response, myError: error };
 };
 
 export default useGetMyHobby;

@@ -39,7 +39,7 @@ const LoginPage = () => {
 
   const handleClickLoginBtn = async () => {
     const token = await getUserToken(userInfo);
-    JSON.stringify(localStorage.setItem("userToken", token));
+    localStorage.setItem("userToken", token);
     setErrMsg("");
     navigate("/mypage");
   };
@@ -58,7 +58,7 @@ const LoginPage = () => {
               onChange={(e) => handleChangeUserInput(e, "ID")}
             />
             <input
-              type="text"
+              type="password"
               placeholder="비밀번호"
               onChange={(e) => handleChangeUserInput(e, "PASSWORD")}
             />
