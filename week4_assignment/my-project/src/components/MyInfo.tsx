@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { mypageInput } from "./MyPage.style";
-import Button from "../../components/common/Button/Button";
-import updateUserData from "../../libs/apis/updateUserData";
+import { mypageInput } from "../pages/myPage/MyPage.style";
+import Button from "./common/Button/Button";
+import updateUserData from "../libs/apis/updateUserData";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

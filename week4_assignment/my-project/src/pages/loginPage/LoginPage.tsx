@@ -20,21 +20,10 @@ const LoginPage = () => {
   });
   const [errMsg, setErrMsg] = useState("");
   const navigate = useNavigate();
-  const handleChangeUserInput = (
-    e: ChangeEvent<HTMLInputElement>,
-    type: "ID" | "PASSWORD"
-  ) => {
-    switch (type) {
-      case "ID":
-        setUserInfo((prev) => {
-          return { ...prev, userId: e.target.value };
-        });
-        break;
-      case "PASSWORD":
-        setUserInfo((prev) => {
-          return { ...prev, password: e.target.value };
-        });
-    }
+
+  const handleChangeUserInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserInfo((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleClickLoginBtn = async () => {
@@ -55,12 +44,14 @@ const LoginPage = () => {
             <input
               type="text"
               placeholder="아이디"
-              onChange={(e) => handleChangeUserInput(e, "ID")}
+              name="userId"
+              onChange={(e) => handleChangeUserInput(e)}
             />
             <input
               type="password"
+              name="password"
               placeholder="비밀번호"
-              onChange={(e) => handleChangeUserInput(e, "PASSWORD")}
+              onChange={(e) => handleChangeUserInput(e)}
             />
 
             <form action="" style={{ width: "100%" }}>

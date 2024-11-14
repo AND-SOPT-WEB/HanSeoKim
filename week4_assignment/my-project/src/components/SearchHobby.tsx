@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { mypageInput } from "./MyPage.style";
-import Button from "../../components/common/Button/Button";
-import useGetMyHobby from "../../libs/apis/useGetMyHobby";
-import useGetUserHobby from "../../libs/apis/useGetUserHobby";
-import { hobbyPstyle } from "./MyPage.style";
+import { mypageInput } from "../pages/myPage/MyPage.style";
+import Button from "./common/Button/Button";
+import useGetMyHobby from "../libs/apis/useGetMyHobby";
+import useGetUserHobby from "../libs/apis/useGetUserHobby";
+import { hobbyPstyle } from "../pages/myPage/MyPage.style";
 import { useState } from "react";
 
 const SearchHobby = () => {

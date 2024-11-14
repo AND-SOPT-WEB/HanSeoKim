@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from "react";
 import { mypageHeaderStyle } from "./MyPage.style";
-import MyInfo from "./MyInfo";
-import SearchHobby from "./SearchHobby";
+import MyInfo from "../../components/MyInfo";
+import SearchHobby from "../../components/SearchHobby";
 import { mypageText } from "./MyPage.style";
 import { useNavigate } from "react-router-dom";
 
