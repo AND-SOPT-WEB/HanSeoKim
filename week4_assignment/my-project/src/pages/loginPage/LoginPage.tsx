@@ -40,21 +40,21 @@ const LoginPage = () => {
           <h1>로그인</h1>
         </header>
         <div>
-          <div css={inputStyle(Theme)}>
-            <input
-              type="text"
-              placeholder="아이디"
-              name="userId"
-              onChange={(e) => handleChangeUserInput(e)}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="비밀번호"
-              onChange={(e) => handleChangeUserInput(e)}
-            />
+          <div>
+            <form action="" css={inputStyle(Theme)}>
+              <input
+                type="text"
+                placeholder="아이디"
+                name="userId"
+                onChange={(e) => handleChangeUserInput(e)}
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="비밀번호"
+                onChange={(e) => handleChangeUserInput(e)}
+              />
 
-            <form action="" style={{ width: "100%" }}>
               <Button
                 type="button"
                 disabled={false}

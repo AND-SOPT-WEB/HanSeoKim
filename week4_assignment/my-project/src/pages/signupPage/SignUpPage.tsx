@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import postSignUpMember from "../../libs/apis/postSignUpMember";
 
 const SignUpPage = () => {
-  const [step, setStep] = useState("이름");
+  const [step, setStep] = useState(1);
   const [disabled, setDisabled] = useState(true);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
@@ -65,36 +65,34 @@ const SignUpPage = () => {
     }
   };
 
+  const handleMoveToNextStep = () => {
+    setStep((prev) => prev + 1);
+    setDisabled(true);
+    setIsError(false);
+  };
+
   return (
     <>
       <main css={signupStyle}>
         <h1 css={headerStyle(Theme)}>회원가입</h1>
-        {step === "이름" && (
+        {step === 1 && (
           <Name
             handleSaveInputValue={handleSaveInputValue}
-            onClick={() => {
-              setStep("비밀번호");
-              setDisabled(true);
-              setIsError(false);
-            }}
+            onClick={handleMoveToNextStep}
             disabled={disabled}
             isError={isError}
           ></Name>
         )}
-        {step === "비밀번호" && (
+        {step === 2 && (
           <Password
             handleSaveInputValue={handleSaveInputValue}
             disabled={disabled}
-            onClick={() => {
-              setStep("취미");
-              setDisabled(true);
-              setIsError(false);
-            }}
+            onClick={handleMoveToNextStep}
             isError={isError}
             userInputs={userInputs}
           ></Password>
         )}
-        {step === "취미" && (
+        {step === 3 && (
           <Hobby
             handleSaveInputValue={handleSaveInputValue}
             disabled={disabled}

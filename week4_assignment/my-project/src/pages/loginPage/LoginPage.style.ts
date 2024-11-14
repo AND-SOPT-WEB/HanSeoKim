@@ -32,6 +32,8 @@ export const inputStyle = (Theme: ThemeType) => css`
 `;
 
 export const pStyle = (Theme: ThemeType) => css`
+  display: flex;
+  justify-content: center;
   font-size: ${Theme.text.small.fontSize};
   color: ${Theme.color.lightGray_3};
   text-decoration-color: ${Theme.color.lightGray_3};
