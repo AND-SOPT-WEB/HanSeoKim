@@ -18,7 +18,7 @@ const LoginPage = () => {
     userId: "",
     password: "",
   });
-  const [errMsg, setErrMsg] = useState("");
+
   const navigate = useNavigate();
 
   const handleChangeUserInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -29,8 +29,9 @@ const LoginPage = () => {
   const handleClickLoginBtn = async () => {
     const token = await getUserToken(userInfo);
     localStorage.setItem("userToken", token);
-    setErrMsg("");
-    navigate("/mypage");
+    if (token) {
+      navigate("/mypage");
+    }
   };
 
   return (
