@@ -1,6 +1,7 @@
 import { api } from "../axios";
 import axios from "axios";
 import { useState } from "react";
+import { SEARCH_HOBBY_ERROR_MESSAGES } from "../../constants";
 
 interface HobbyData {
   userToken: string | null;
@@ -9,7 +10,6 @@ interface HobbyData {
 
 const useGetUserHobby = ({ userToken, userNo }: HobbyData) => {
   const [response, setResponse] = useState("");
-  const [error, setError] = useState("");
 
   const fetchData = async () => {
     if (userNo === 0) {
@@ -25,25 +25,17 @@ const useGetUserHobby = ({ userToken, userNo }: HobbyData) => {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const statusCode = error.response?.status;
-        if (statusCode === 404) {
-          const errorCode = error.response?.data?.code;
-          if (errorCode === "00") {
-            setError("잘못된 요청 경로입니다.");
-          } else if (errorCode === "01") {
-            setError("존재하지 않는 사용자 번호입니다.");
-          }
-        } else {
-          setError("네트워크 오류가 발생했습니다.");
-        }
-      } else {
-        setError("알 수 없는 오류가 발생했습니다.");
+        const errorCode = error.response?.data.code || null;
+        const key = `${statusCode}-${errorCode}`;
+        const errorMessage = SEARCH_HOBBY_ERROR_MESSAGES[key];
+        alert(errorMessage);
       }
     }
   };
 
   fetchData();
 
-  return { userHobby: response, userError: error };
+  return { userHobby: response };
 };
 
 export default useGetUserHobby;

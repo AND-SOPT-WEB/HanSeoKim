@@ -12,13 +12,10 @@ const SearchHobby = () => {
 
   const userToken = localStorage.getItem("userToken");
 
-  const { myHobby, myError } = useGetMyHobby(userToken);
-  const { userHobby, userError } = useGetUserHobby({ userToken, userNo });
+  const { myHobby } = useGetMyHobby(userToken);
+  const { userHobby } = useGetUserHobby({ userToken, userNo });
 
   const handleClickSearch = () => {
-    if (userError) {
-      alert(userError);
-    }
     if (userHobby) {
       setHobby(userHobby);
     }

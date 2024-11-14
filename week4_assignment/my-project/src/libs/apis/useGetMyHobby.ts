@@ -1,10 +1,10 @@
 import axios from "axios";
 import { api } from "../axios";
 import { useState } from "react";
+import { SEARCH_HOBBY_ERROR_MESSAGES } from "../../constants";
 
 const useGetMyHobby = (userToken: string | null) => {
   const [response, setResponse] = useState("");
-  const [error, setError] = useState("");
 
   const fetchData = async () => {
     try {
@@ -14,16 +14,20 @@ const useGetMyHobby = (userToken: string | null) => {
         },
       });
       setResponse(data.result.hobby);
-    } catch (err) {
-      if (axios.isAxiosError(err)) {
-        console.log(err);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const statusCode = error.response?.status;
+        const errorCode = error.response?.data.code || null;
+        const key = `${statusCode}-${errorCode}`;
+        const errorMessage = SEARCH_HOBBY_ERROR_MESSAGES[key];
+        alert(errorMessage);
       }
     }
   };
 
   fetchData();
 
-  return { myHobby: response, myError: error };
+  return { myHobby: response };
 };
 
 export default useGetMyHobby;

@@ -1,4 +1,6 @@
 import { api } from "../axios";
+import { CHANGE_INFO_ERROR_MESSAGES } from "../../constants";
+import axios from "axios";
 
 interface UpdateUser {
   hobby?: string;
@@ -23,7 +25,13 @@ const updateUserData = async ({ hobby, password, userToken }: UpdateUser) => {
       console.log("업데이트 성공", response.data);
     }
   } catch (error) {
-    console.log(error);
+    if (axios.isAxiosError(error)) {
+      const statusCode = error.response?.status;
+      const errorCode = error.response?.data.code || null;
+      const key = `${statusCode}-${errorCode}`;
+      const errorMessage = CHANGE_INFO_ERROR_MESSAGES[key];
+      alert(errorMessage);
+    }
   }
 };
 

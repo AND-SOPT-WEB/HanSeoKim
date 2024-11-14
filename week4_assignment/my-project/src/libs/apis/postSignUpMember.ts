@@ -1,5 +1,6 @@
 import { api } from "../axios";
 import axios from "axios";
+import { SIGNUP_ERROR_MESSAGES } from "../../constants";
 
 interface SignupData {
   username: string;
@@ -25,25 +26,11 @@ const postSignUpMember = async ({ username, password, hobby }: SignupData) => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const statusCode = error.response?.status;
-      if (statusCode === 400) {
-        const errorCode = error.response?.data?.code;
-        if (errorCode === "00") {
-          alert("입력값이 유효하지 않습니다.");
-        } else if (errorCode === "01") {
-          alert("입력값이 8자를 넘겼습니다.");
-        }
-      } else if (statusCode === 404) {
-        alert("네트워크 오류가 발생했습니다.");
-      } else if (statusCode === 409) {
-        const errorCode = error.response?.data?.code;
-        if (errorCode == "00") {
-          alert("중복된 아이디입니다.");
-        }
-      }
-    } else {
-      alert("알 수 없는 오류가 발생했습니다.");
+      const errorCode = error.response?.data.code || null;
+      const key = `${statusCode}-${errorCode}`;
+      const errorMessage = SIGNUP_ERROR_MESSAGES[key];
+      alert(errorMessage);
     }
   }
 };
-
 export default postSignUpMember;
